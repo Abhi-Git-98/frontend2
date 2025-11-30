@@ -106,7 +106,7 @@ export default function AboutPage() {
             <div style={{ flex: 1, minWidth: "250px", display: "flex", flexDirection: "column" }}>
               <p
                 style={{
-                  fontSize: "1.5rem",
+                  fontSize: "1.3rem",
                   lineHeight: "1.8",
                   color: "#333",
                   textAlign: "justify",
