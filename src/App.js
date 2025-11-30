@@ -4,9 +4,10 @@ import { useState } from "react";
 // 🧱 Public components
 import Navbar from "./components/Navbar";
 import Events from "./components/Events";
-import Participants from "./components/Participants";
+// import Participants from "./components/Participants";
 import Students from "./components/Students";
 import Guests from "./components/Guests";
+import Form from "./components/GoogleForm";
 import Coordinators from "./components/Coordinators";
 import Footer from "./components/Footer";
 import About from "./components/About"
@@ -31,7 +32,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<About />} />
             <Route path="/Events" element={<Events />} />
-            <Route path="/participants" element={<Participants />} />
+            <Route path="/participants" element={<Form />} />
             <Route path="/students" element={<Students />} />
             <Route path="/guests" element={<Guests />} />
             <Route path="/coordinators" element={<Coordinators />} />

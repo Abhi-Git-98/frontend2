@@ -28,14 +28,14 @@ export default function Footer() {
               href="https://www.facebook.com/symbiotek.org"
               style={{ textDecoration: "none" }}
             >
-              <img src="http://localhost:5000/uploads/facebook.png" alt="facebook" style= {{width: "40px", height:"40px"}} />
+              <img src="https://genvision-26.onrender.com/uploads/facebook.png" alt="facebook" style= {{width: "40px", height:"40px"}} />
             </a>
             <a
               href="https://www.linkedin.com/in/symbiotek-iit-bombay/"
               style={{ textDecoration: "none" }}
             >
               <img
-                src="http://localhost:5000/uploads/linkdin.png"
+                src="https://genvision-26.onrender.com/uploads/linkdin.png"
                 alt="LinkedIn"
                 style={{ width: "40px", height: "40px" }}
               />
@@ -45,7 +45,7 @@ export default function Footer() {
               style={{ textDecoration: "none" }}
             >
               <img
-                src="http://localhost:5000/uploads/youtube.png"
+                src="https://genvision-26.onrender.com/uploads/youtube.png"
                 alt="YouTube"
                 style={{ width: "40px", height: "40px" }}
               />
@@ -55,7 +55,7 @@ export default function Footer() {
               style={{ textDecoration: "none" }}
             >
               <img
-                src="http://localhost:5000/uploads/instagram.png"
+                src="https://genvision-26.onrender.com/uploads/instagram.png"
                 alt="Instagram"
                 style={{ width: "40px", height: "40px" }}
               />
