@@ -64,7 +64,7 @@ export default function AddParticipant() {
     <div className="container mt-5">
       <div className="card shadow-sm">
         <div className="card-body">
-          <h3 className="text-center mb-4">Be a Part of the GenVision</h3>
+          <h3 className="text-center mb-4">Be a Part of the </h3>
 
           <form
             onSubmit={handleSubmit}
