@@ -251,7 +251,7 @@ export default function AboutPage() {
         <h3 className="text-center mb-3">Sponsors</h3>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "24px", justifyContent: "center", alignItems: "center" }}>
           {about.sponsors.map((s, idx) => (
-            <div key={idx} style={{ flex: "0 0 140px", textAlign: "center" }}>
+            <div key={idx} className="col-6 col-md-4 col-lg-3" style={{ flex: "0 0 140px", textAlign: "center" }}>
               <LazyImage
                 src={s.logo}
                 alt={s.name}
