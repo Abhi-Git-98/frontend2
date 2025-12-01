@@ -248,14 +248,14 @@ export default function AboutPage() {
 
       {/* Sponsors */}
       <div style={{ backgroundColor: "#fff", width: "100%", padding: "20px 0", marginBottom: "4%" }}>
-        <h3 className="text-center mb-3">Sponsors</h3>
+        <h3 className="text-center mb-3">Our Past Sponsers</h3>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "24px", justifyContent: "center", alignItems: "center" }}>
           {about.sponsors.map((s, idx) => (
             <div key={idx} className="col-6 col-md-4 col-lg-3" style={{ flex: "0 0 140px", textAlign: "center" }}>
               <LazyImage
                 src={s.logo}
                 alt={s.name}
-                style={{ borderRadius: "8px", objectFit: "contain", backgroundColor: "#f0f0f0", width: "140px", height: "80px" }}
+                style={{ borderRadius: "8px", objectFit: "contain", backgroundColor: "#fff", width: "140px", height: "80px" }}
               />
             </div>
           ))}
