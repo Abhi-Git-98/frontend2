@@ -153,3 +153,27 @@
 .register-btn:active {
   transform: scale(0.98);
 }
+
+.scroll-arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  animation: bounce 1.5s infinite;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-arrow:hover {
+  opacity: 1;
+}
+
+@keyframes bounce {
+  0% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -12px); }
+  100% { transform: translate(-50%, 0); }
+}
