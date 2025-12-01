@@ -14,8 +14,6 @@ export default function AboutPage() {
  const LazyImage = ({ src, alt, className, style }) => {
   if (!src) return null;
 
-  const baseURL = "https://genvision-26.onrender.com";
-
   // Path auto-fix logic
   const finalSrc = src.startsWith("http")
     ? src
