@@ -46,20 +46,6 @@ export default function Navbar() {
   return () => window.removeEventListener("scroll", handleScroll);
 }, []);
 
- <header className={`hero-section ${scrolled ? "fade-out" : "fade-in"}`}>
-        
-        {/* ↓ Scroll Arrow (visible only at top) */}
-        {!scrolled && (
-          <div
-            className="scroll-arrow"
-            onClick={() =>
-              window.scrollTo({ top: 600, behavior: "smooth" })
-            }
-          >
-            ↓
-          </div>
-        )}
-      </header>
 
   return (
     <>
