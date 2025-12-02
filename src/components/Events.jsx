@@ -28,6 +28,8 @@ export default function Events() {
                 borderRadius: "10px",
                 overflow: "hidden",
                 backgroundColor: "#fff",
+                marginRight:"10px",
+                marginLeft:"10px"
               }}
             >
               {ev.image && (
