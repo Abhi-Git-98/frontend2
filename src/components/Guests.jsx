@@ -20,7 +20,7 @@ export default function Guests() {
       ) : (
         <div className="d-flex flex-wrap justify-content-center gap-4">
           {guests.map((g) => (
-            <div key={g._id} className="guest-card margin-x">
+            <div key={g._id} className="guest-card margin-x" style={{marginRight:"10px",marginLeft:"10px"}}>
               <div className="guest-img-wrapper">
                 <img
   src={`https://genvision-26.onrender.com${g.image.startsWith("/") ? g.image : "/" + g.image}`}
