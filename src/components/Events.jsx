@@ -19,9 +19,9 @@ export default function Events() {
         Genvision Events
       </h1>
 
-      <div className="row g-4">
+      <div className="row g-4 justify-content-center">
         {events.map((ev) => (
-          <div key={ev._id} className="col-6 col-md-4 col-lg-3 justify-content-center">
+          <div key={ev._id} className="col-6 col-md-4 col-lg-3 ">
             <div
               className="card shadow"
               style={{
