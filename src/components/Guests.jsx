@@ -18,7 +18,7 @@ export default function Guests() {
       {guests.length === 0 ? (
         <p className="text-center text-muted">No guests added yet...</p>
       ) : (
-        <div className="d-flex flex-wrap gap-4">
+        <div className="d-flex flex-wrap gap-4 col-md-4 col-lg-4">
           {guests.map((g) => (
             <div key={g._id} className="guest-card">
               <div className="guest-img-wrapper">
