@@ -21,7 +21,7 @@ export default function Events() {
 
       <div className="row g-4">
         {events.map((ev) => (
-          <div key={ev._id} className="col-6 col-md-4 col-lg-3">
+          <div key={ev._id} className="col-6 col-md-4 col-lg-3 justify-content-center">
             <div
               className="card shadow"
               style={{
