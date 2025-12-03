@@ -184,14 +184,22 @@ export default function AboutPage() {
       </div>
 
       {/* Events */}
-      <div className="row g-4">
+       <h1
+        className="text-3xl font-bold mb-4 text-white"
+        style={{ textAlign: "center" }}
+      >
+        Genvision Events
+      </h1>
+      <div className="row g-5 justify-content-center">
+      
         {events.map((c) => (
           <div key={c._id} className="col-6 col-md-4 col-lg-3">
             <div
               className="event-card bg-white shadow"
               style={{
                 height:"auto",
-                margin: "5px",
+                marginLeft: "5px",
+                marginRight: "5px",
                 borderRadius: "10px",
                 backgroundImage: `url(${baseURL}${c.image})`,
                 backgroundSize: "fit",
