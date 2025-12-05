@@ -10,7 +10,8 @@ import Guests from "./components/Guests";
 import Form from "./components/GoogleForm";
 import Coordinators from "./components/Coordinators";
 import Footer from "./components/Footer";
-import About from "./components/About"
+import About from "./components/About";
+import News from "./components/News"
 
 // ⚙️ Admin components
 import AdminLogin from "./components/AdminLogin";
@@ -29,6 +30,7 @@ export default function App() {
         // 🌐 Normal public site view
         <>
           <Navbar />
+          <News />
           <Routes>
             <Route path="/" element={<About />} />
             <Route path="/Events" element={<Events />} />
@@ -41,7 +43,7 @@ export default function App() {
               element={<AdminLogin onLogin={setIsAdminLoggedIn} />}
             />
             <Route path="/admin-register" element={<AdminRegister />} />
-
+      
           </Routes>
           <Footer />
         </>

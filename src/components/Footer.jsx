@@ -9,6 +9,8 @@ export default function Footer() {
         color: "white",
         padding: "20px 0",
         borderRadius:"60px",
+        zIndex: "9998",
+        positon:"absolute"
       }}
     >
       <div

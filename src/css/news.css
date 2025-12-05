@@ -1,0 +1,25 @@
+.news-ticker {
+  width: 100%;
+  background: #e7ff2e;
+  color: #000;
+  padding: 10px 0;
+  position: fixed;
+  top: 60px; /* navbar height नुसार */
+  left: 0;
+  z-index: 9998;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.news-ticker-content {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: 600;
+  will-change: transform;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
