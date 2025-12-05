@@ -25,11 +25,14 @@ export default function Coordinators() {
     setFlippedId((prev) => (prev === id ? null : id)); // पुन्हा click केला तर flip बंद होईल
   };
 
+
   return (
     <div className="container my-5">
       <h2 className="text-center mb-4 fw-bold" style={{fontFamily:"Roboto", color:"#fff"}}>
         Meet Our Coordinators
       </h2>
+
+      <h2 className="text-center" style={{color:"#fff"}}>Updating Soon...</h2>;
 
       <div className="row g-4">
         {coordinators.map((c) => (
