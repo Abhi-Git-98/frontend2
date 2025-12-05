@@ -50,7 +50,7 @@ export default function NewsTicker() {
       {show && (
         <div className="news-ticker" ref={tickerRef}>
           <div className="news-ticker-content" ref={textRef}>
-            🔴 Registration will open at 5 pm  🔴 Accommodation will be provided to
+            🔴 Registration are open  🔴 Accommodation will be provided to
             only 15 students from each outstation college, other students can
             register but accommodation will not be provided.
           </div>
