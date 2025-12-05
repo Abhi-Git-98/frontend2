@@ -3,6 +3,11 @@ import API from "../api";
 import { Carousel } from "react-bootstrap";
 import "../css/about.css";
 
+import { aboutFallback } from "../fallback/aboutFallback";
+import { eventsFallback } from "../fallback/eventsFallback";
+
+
+
 export default function AboutPage() {
   const [about, setAbout] = useState(null);
   const [events, setEvents] = useState([]);
@@ -14,10 +19,12 @@ export default function AboutPage() {
  const LazyImage = ({ src, alt, className, style }) => {
   if (!src) return null;
 
-  // Path auto-fix logic
-  const finalSrc = src.startsWith("http")
-    ? src
-    : `${baseURL}${src}`; // <-- ही ओळ magic आहे
+  let finalSrc = src;
+
+  // Static fallback paths → don't attach baseURL
+  if (!src.startsWith("http") && !src.startsWith("/fallback")) {
+    finalSrc = `${baseURL}${src}`;
+  }
 
   return (
     <img
@@ -30,31 +37,31 @@ export default function AboutPage() {
   );
 };
 
-  // Fetch About Data
   useEffect(() => {
-    const fetchAbout = async () => {
-      try {
-        const res = await API.get("/about");
-        setAbout(res.data);
-      } catch (err) {
-        console.error("Error fetching about:", err);
-      }
-    };
-    fetchAbout();
-  }, []);
+  const fetchAbout = async () => {
+    try {
+      const res = await API.get("/about");
+      setAbout(res.data);
+    } catch (err) {
+      console.error("Backend down → loading fallback About");
+      setAbout(aboutFallback);  // ⭐ fallback येथे
+    }
+  };
+  fetchAbout();
+}, []);
 
-  // Fetch Events
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const res = await API.get("/events");
-        setEvents(res.data);
-      } catch (err) {
-        console.error("Error fetching events:", err);
-      }
-    };
-    fetchEvents();
-  }, []);
+useEffect(() => {
+  const fetchEvents = async () => {
+    try {
+      const res = await API.get("/events");
+      setEvents(res.data);
+    } catch (err) {
+      console.error("Backend down → loading fallback Events");
+      setEvents(eventsFallback); // ⭐ fallback येथे
+    }
+  };
+  fetchEvents();
+}, []);
 
   // Handle resize
   useEffect(() => {
