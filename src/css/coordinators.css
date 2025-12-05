@@ -8,6 +8,7 @@
   height: 300px;  /* card ची full height, 300px image + काही back content */
 }
 
+
 .flip-card-inner {
   position: relative;
   width: 100%;
