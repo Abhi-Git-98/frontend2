@@ -34,6 +34,18 @@ export default function ManageParticipants() {
     });
   };
 
+  const handleSync = async () => {
+    try {
+      const res = await API.post("/participants/sync");
+      if (res.data.success) {
+        alert("Sync successful! ✅");
+      } 
+    } catch (err) {
+      alert("Sync failed 😵");
+      console.error(err);
+    }}
+
+
   // -----------------------------------------------
   // Update Editable Fields
   // -----------------------------------------------
@@ -84,6 +96,18 @@ export default function ManageParticipants() {
   return (
     <div className="container my-4">
       <h2 className="fw-bold mb-3">🎓 Participants List</h2>
+          <button
+      onClick={handleSync}
+      style={{
+        padding: "10px 20px",
+        background: "#111",
+        color: "#fff",
+        borderRadius: "8px",
+        cursor: "pointer",
+      }}
+    >
+      🔄 Sync Participants
+    </button>
 
       {/* TABLE */}
       <div className="table-responsive">
