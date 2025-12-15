@@ -124,6 +124,7 @@ export default function ManageParticipants() {
               <th>Accommodation Status</th>
               <th>Mumbaikar</th>
               <th>Reg ID</th>
+              <th>Confirmation Email</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -148,7 +149,26 @@ export default function ManageParticipants() {
                 <td>{p.accommodationStatus}</td>
                 <td>{p.isMumbaikar}</td>
                 <td>{p.registration_id}</td>
-
+                <td>
+  {p.confirmationEmailSent ? (
+    <span className="badge bg-success">✅ Email Sent</span>
+  ) : (
+    <button
+      className="btn btn-sm btn-primary"
+      onClick={async () => {
+        try {
+          await API.post(`/participants/send-confirmation/${p._id}`);
+          alert("Confirmation email sent 📩");
+          fetchParticipants(); // refresh table
+        } catch (err) {
+          alert("Failed to send email ❌");
+        }
+      }}
+    >
+      📧 Send Email
+    </button>
+  )}
+</td>
                 <td className="d-flex gap-2">
                   <button
                     className="btn btn-sm btn-outline-warning"
