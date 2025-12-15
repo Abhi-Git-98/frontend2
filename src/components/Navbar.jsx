@@ -46,7 +46,6 @@ export default function Navbar() {
   return () => window.removeEventListener("scroll", handleScroll);
 }, []);
 
-
   return (
     <>
       {/* 🌆 Second Background (always behind) */}
@@ -68,7 +67,7 @@ export default function Navbar() {
       >
         <div className="container navsize">
           <Link className="navbar-brand fw-bold text-black" to="/">
-            Genvision 2026
+            GenVision
           </Link>
 
           <button
@@ -86,7 +85,9 @@ export default function Navbar() {
               <li className="nav-item"><Link className="nav-link text-black" to="/Events">Events</Link></li>
               <li className="nav-item"><Link className="nav-link text-black" to="/Coordinators">Coordinators</Link></li>
               <li className="nav-item"><Link className="nav-link text-black" to="/Guests">Guests</Link></li>
-              <li className="nav-item" style={{MarginLeft:"10%"}}><Link className="nav-link text-black register-btn center" to="/Login">Join Us</Link></li>
+              <li className="nav-item" style={{MarginLeft:"10%"}}><Link className="nav-link text-black register-btn center" to="/Participants">Join Us</Link></li>
+              <li className="nav-item" style={{MarginLeft:"10%"}}><Link className="nav-link text-black register-btn center" to="/Login">Login</Link></li>
+
             </ul>
             
           </div>
@@ -96,4 +97,3 @@ export default function Navbar() {
     </>
   );
 }
-
