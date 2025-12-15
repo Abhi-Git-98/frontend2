@@ -121,7 +121,7 @@ export default function ManageEvents() {
         {events.map((ev) => (
           <div key={ev._id} className="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
             <div className={`card h-100 text-center ${selectedEventId === ev._id ? "border-primary border-2" : ""}`}>
-              {ev.image && <img src={`http://localhost:5000/${ev.image.replace(/^\/+/, "")}`} alt={ev.name} className="card-img-top" style={{ height: "150px", objectFit: "cover" }} />}
+              {ev.image && <img src={`https://genvision-26.onrender.com${ev.image.replace(/^\/+/, "")}`} alt={ev.name} className="card-img-top" style={{ height: "150px", objectFit: "cover" }} />}
               <div className="card-body p-2">
                 <h6 className="card-title">{ev.name}</h6>
                 <div className="d-flex justify-content-center gap-2">
