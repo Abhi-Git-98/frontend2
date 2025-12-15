@@ -5,7 +5,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Events from "./components/Events";
 // import Participants from "./components/Participants";
-import Students from "./components/Students";
+// import Students from "./components/Students";
 import Guests from "./components/Guests";
 import Form from "./components/GoogleForm";
 import Coordinators from "./components/Coordinators";
@@ -37,8 +37,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<About />} />
             <Route path="/Events" element={<Events />} />
-            <Route path="/participants" element={<Form />} />
-            <Route path="/students" element={<Students />} />
+            <Route path="/participants" element={<Form/>} />} />
+            {/* <Route path="/students" element={<Students />} /> */}
             <Route path="/guests" element={<Guests />} />
             <Route path="/coordinators" element={<Coordinators />} />
             <Route
@@ -64,4 +64,5 @@ export default function App() {
     </HashRouter>
   );
 }
+
 
