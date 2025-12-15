@@ -16,7 +16,7 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
     } catch {
-      setError("Email किंवा Password चुकलाय");
+      setError("Invalid email or password. Please try again.");
     }
   };
 
