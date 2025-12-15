@@ -3,23 +3,23 @@ import API from "../../api";
 
 export default function ManageParticipants() {
   const [participants, setParticipants] = useState([]);
-  const [events, setEvents] = useState([]);
   const [editing, setEditing] = useState(null);
 
   // -----------------------------------------------
-  // Fetch initial data
+  // Fetch Participants (WITH populated events)
   // -----------------------------------------------
   useEffect(() => {
-    (async () => {
-      const [pRes, eRes] = await Promise.all([
-        API.get("/participants"),
-        API.get("/events"),
-      ]);
-
-      setParticipants(pRes.data);
-      setEvents(eRes.data);
-    })();
+    fetchParticipants();
   }, []);
+
+  const fetchParticipants = async () => {
+    try {
+      const res = await API.get("/participants");
+      setParticipants(res.data);
+    } catch (err) {
+      alert("Failed to fetch participants");
+    }
+  };
 
   // -----------------------------------------------
   // Open Edit Form
@@ -27,23 +27,18 @@ export default function ManageParticipants() {
   const handleEdit = (p) => {
     setEditing({
       ...p,
-      payment_status: p.payment_status?.toLowerCase() || "pending",
-      accommodation_status: p.accommodation_status?.toLowerCase() || "pending",
-      travel_status: p.travel_status?.toLowerCase() || "pending",
-      events: p.events?.map((ev) => ev._id) || [],
+      paymentStatus: p.paymentStatus?.toLowerCase() || "pending",
+      accommodationStatus: p.accommodationStatus?.toLowerCase() || "pending",
+      // 🔥 IMPORTANT: events AS OBJECTS, NOT IDs
+      events: p.events || [],
     });
   };
 
   // -----------------------------------------------
-  // Update Form Fields
+  // Update Editable Fields
   // -----------------------------------------------
   const handleChange = (e) => {
     setEditing({ ...editing, [e.target.name]: e.target.value });
-  };
-
-  const handleEventSelect = (e) => {
-    const selected = [...e.target.selectedOptions].map((o) => o.value);
-    setEditing({ ...editing, events: selected });
   };
 
   // -----------------------------------------------
@@ -51,17 +46,20 @@ export default function ManageParticipants() {
   // -----------------------------------------------
   const handleUpdate = async (e) => {
     e.preventDefault();
+
     try {
-      await API.put(`/participants/${editing._id}`, editing);
-      alert("Updated successfully!");
+      const payload = {
+        paymentStatus: editing.paymentStatus,
+        accommodationStatus: editing.accommodationStatus,
+      };
 
-      // refresh
-      const res = await API.get("/participants");
-      setParticipants(res.data);
+      await API.put(`/participants/${editing._id}`, payload);
 
+      alert("Participant updated successfully ✅");
+      await fetchParticipants();
       setEditing(null);
-    } catch {
-      alert("Error updating participant");
+    } catch (err) {
+      alert("Error updating participant ❌");
     }
   };
 
@@ -71,14 +69,17 @@ export default function ManageParticipants() {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this participant?")) return;
 
-    await API.delete(`/participants/${id}`);
-    alert("Deleted!");
-
-    setParticipants((prev) => prev.filter((p) => p._id !== id));
+    try {
+      await API.delete(`/participants/${id}`);
+      setParticipants((prev) => prev.filter((p) => p._id !== id));
+      alert("Deleted successfully 🗑️");
+    } catch {
+      alert("Delete failed");
+    }
   };
 
   // -----------------------------------------------
-  // JSX Render
+  // JSX
   // -----------------------------------------------
   return (
     <div className="container my-4">
@@ -91,11 +92,13 @@ export default function ManageParticipants() {
             <tr>
               <th>Name</th>
               <th>Email</th>
+              <th>Phone</th>
               <th>College</th>
               <th>Event(s)</th>
               <th>Payment</th>
-              <th>Accommodation</th>
-              <th>Travel</th>
+              <th>Accommodation Required</th>
+              <th>Accommodation Status</th>
+              <th>Mumbaikar</th>
               <th>Reg ID</th>
               <th>Action</th>
             </tr>
@@ -104,13 +107,22 @@ export default function ManageParticipants() {
           <tbody>
             {participants.map((p) => (
               <tr key={p._id}>
-                <td>{p.name}</td>
+                <td>{p.fullName}</td>
                 <td>{p.email}</td>
-                <td>{p.college}</td>
-                <td>{p.events.map((ev) => ev.name).join(", ")}</td>
-                <td>{p.payment_status}</td>
-                <td>{p.accommodation_status}</td>
-                <td>{p.travel_status}</td>
+                <td>{p.mobileNumber}</td>
+                <td>{p.institution}</td>
+
+                {/* EVENTS DISPLAY */}
+                <td>
+                  {p.events && p.events.length > 0
+                    ? p.events.map((ev) => ev.name).join(", ")
+                    : "—"}
+                </td>
+
+                <td>{p.paymentStatus}</td>
+                <td>{p.accommodationRequired}</td>
+                <td>{p.accommodationStatus}</td>
+                <td>{p.isMumbaikar}</td>
                 <td>{p.registration_id}</td>
 
                 <td className="d-flex gap-2">
@@ -137,87 +149,86 @@ export default function ManageParticipants() {
       {/* EDIT FORM */}
       {editing && (
         <div className="p-4 mt-4 border rounded bg-light shadow-sm">
-          <h4>Edit Participant: {editing.name}</h4>
+          <h4 className="mb-3">
+            Edit Participant:{" "}
+            <span className="text-primary">{editing.fullName}</span>
+          </h4>
 
           <form className="row g-3" onSubmit={handleUpdate}>
+            {/* NAME */}
             <div className="col-md-6">
-              <input
-                name="name"
-                value={editing.name}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Full Name"
-                required
-              />
+              <label className="form-label fw-semibold">Full Name</label>
+              <div className="form-control bg-light">
+                {editing.fullName}
+              </div>
             </div>
 
+            {/* EMAIL */}
             <div className="col-md-6">
-              <input
-                name="email"
-                value={editing.email}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Email"
-                required
-              />
+              <label className="form-label fw-semibold">Email</label>
+              <div className="form-control bg-light">
+                {editing.email}
+              </div>
             </div>
 
+            {/* PAYMENT */}
             <div className="col-md-6">
+              <label className="form-label fw-semibold">Payment Status</label>
               <select
-                name="payment_status"
-                value={editing.payment_status}
+                name="paymentStatus"
+                value={editing.paymentStatus}
                 onChange={handleChange}
                 className="form-select"
               >
-                <option value="pending">Payment Pending</option>
-                <option value="confirmed">Payment Confirmed</option>
+                <option value="pending">Pending</option>
+                <option value="confirmed">Confirmed</option>
               </select>
             </div>
 
+            {/* ACCOMMODATION */}
             <div className="col-md-6">
+              <label className="form-label fw-semibold">
+                Accommodation Status
+              </label>
               <select
-                name="accommodation_status"
-                value={editing.accommodation_status}
+                name="accommodationStatus"
+                value={editing.accommodationStatus}
                 onChange={handleChange}
                 className="form-select"
               >
-                <option value="pending">Accommodation Pending</option>
-                <option value="confirmed">Accommodation Confirmed</option>
-                <option value="rejected">Accommodation Rejected</option>
+                <option value="pending">Pending</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="rejected">Rejected</option>
               </select>
             </div>
 
-            <div className="col-md-6">
-              <select
-                name="travel_status"
-                value={editing.travel_status}
-                onChange={handleChange}
-                className="form-select"
-              >
-                <option value="pending">Travel Pending</option>
-                <option value="confirmed">Travel Confirmed</option>
-                <option value="rejected">Travel Rejected</option>
-              </select>
-            </div>
-
+            {/* EVENTS – VIEW ONLY */}
             <div className="col-md-12">
-              <label className="form-label fw-semibold">Select Events</label>
-              <select
-                multiple
-                className="form-select"
-                value={editing.events}
-                onChange={handleEventSelect}
-              >
-                {events.map((ev) => (
-                  <option key={ev._id} value={ev._id}>
-                    {ev.name}
-                  </option>
-                ))}
-              </select>
+              <label className="form-label fw-semibold">
+                Registered Events
+              </label>
+
+              {editing.events && editing.events.length > 0 ? (
+                <ul className="list-group">
+                  {editing.events.map((ev) => (
+                    <li key={ev._id} className="list-group-item">
+                      {ev.name}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="text-muted">
+                  No events registered
+                </div>
+              )}
             </div>
 
-            <div className="text-center mt-3">
-              <button className="btn btn-success px-4 fw-semibold">
+            {/* ACTIONS */}
+            <div className="text-center mt-4">
+              <button
+                type="submit"
+                className="btn btn-success px-4 fw-semibold"
+              >
                 💾 Save Changes
               </button>
 
@@ -235,4 +246,3 @@ export default function ManageParticipants() {
     </div>
   );
 }
-

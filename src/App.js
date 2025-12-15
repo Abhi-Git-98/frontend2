@@ -12,6 +12,9 @@ import Coordinators from "./components/Coordinators";
 import Footer from "./components/Footer";
 import About from "./components/About";
 import News from "./components/News"
+import Login from "./components/Login";
+import ParticipantDashboard from "./components/ParticipantDashboard";
+import PrivateRoute from "./components/PrivateRoute";
 
 // ⚙️ Admin components
 import AdminLogin from "./components/AdminLogin";
@@ -43,6 +46,16 @@ export default function App() {
               element={<AdminLogin onLogin={setIsAdminLoggedIn} />}
             />
             <Route path="/admin-register" element={<AdminRegister />} />
+             <Route path="/login" element={<Login />} />
+        <Route 
+          path="/dashboard" 
+          element={
+            <PrivateRoute>
+              <ParticipantDashboard />
+            </PrivateRoute>
+          } 
+        />
+        <Route path="*" element={<Login />} /> {/* unknown path redirect to login */}
       
           </Routes>
           <Footer />
