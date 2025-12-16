@@ -34,16 +34,16 @@ export default function ManageParticipants() {
     });
   };
 
-  const handleSync = async () => {
-    try {
-      const res = await API.post("/participants/sync");
-      if (res.data.success) {
-        alert("Sync successful! ✅");
-      } 
-    } catch (err) {
-      alert("Sync failed 😵");
-      console.error(err);
-    }}
+  // const handleSync = async () => {
+  //   try {
+  //     const res = await API.post("/participants/sync");
+  //     if (res.data.success) {
+  //       alert("Sync successful! ✅");
+  //     } 
+  //   } catch (err) {
+  //     alert("Sync failed 😵");
+  //     console.error(err);
+  //   }}
 
 
   // -----------------------------------------------
@@ -96,7 +96,7 @@ export default function ManageParticipants() {
   return (
     <div className="container my-4">
       <h2 className="fw-bold mb-3">🎓 Participants List</h2>
-          <button
+          {/* <button
       onClick={handleSync}
       style={{
         padding: "10px 20px",
@@ -107,7 +107,7 @@ export default function ManageParticipants() {
       }}
     >
       🔄 Sync Participants
-    </button>
+    </button> */}
 
       {/* TABLE */}
       <div className="table-responsive">
@@ -124,7 +124,7 @@ export default function ManageParticipants() {
               <th>Accommodation Status</th>
               <th>Mumbaikar</th>
               <th>Reg ID</th>
-              <th>Confirmation Email</th>
+              {/* <th>Confirmation Email</th> */}
               <th>Action</th>
             </tr>
           </thead>
@@ -149,7 +149,7 @@ export default function ManageParticipants() {
                 <td>{p.accommodationStatus}</td>
                 <td>{p.isMumbaikar}</td>
                 <td>{p.registration_id}</td>
-                <td>
+                {/* <td>
   {p.confirmationEmailSent ? (
     <span className="badge bg-success">✅ Email Sent</span>
   ) : (
@@ -168,7 +168,7 @@ export default function ManageParticipants() {
       📧 Send Email
     </button>
   )}
-</td>
+</td> */}
                 <td className="d-flex gap-2">
                   <button
                     className="btn btn-sm btn-outline-warning"
