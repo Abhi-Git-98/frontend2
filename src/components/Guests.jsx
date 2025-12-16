@@ -16,7 +16,7 @@ export default function Guests() {
       <h1 className="text-center mb-5 fw-bold text-white">Our 2025 Genvision Speakers</h1>
 
       {guests.length === 0 ? (
-        <h3 className="text-center text-white">Coming Soon...</h3>
+        <h3 className="text-center mb-5 fw-bold text-white">Coming Soon...</h3>
       ) : (
         <div className="d-flex flex-wrap justify-content-center gap-4">
           {guests.map((g) => (
