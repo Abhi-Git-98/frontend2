@@ -13,7 +13,7 @@ export default function Guests() {
 
   return (
     <div className="p-5">
-      <h1 className="text-center mb-5 fw-bold text-white">Our 2025 Genvision Speakers</h1>
+      <h1 className="text-center mb-5 fw-bold text-white">Our Speakers</h1>
 
       {guests.length === 0 ? (
         <h3 className="text-center mb-5 fw-bold text-white">Coming Soon...</h3>
