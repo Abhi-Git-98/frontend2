@@ -35,6 +35,7 @@ export default function App() {
           <Navbar />
           <News />
           <Routes>
+            <Route path="/admin-register" element={<AdminRegister />} />
             <Route path="/" element={<About />} />
             <Route path="/Events" element={<Events />} />
             <Route path="/participants" element={<Form/>} />} />
@@ -45,8 +46,8 @@ export default function App() {
               path="/admin"
               element={<AdminLogin onLogin={setIsAdminLoggedIn} />}
             />
-            <Route path="/admin-register" element={<AdminRegister />} />
-             <Route path="/login" element={<Login />} />
+            
+        <Route path="/login" element={<Login />} />
         <Route 
           path="/dashboard" 
           element={
