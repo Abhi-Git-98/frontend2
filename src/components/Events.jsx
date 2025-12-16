@@ -16,7 +16,7 @@ export default function Events() {
         className="text-3xl font-bold mb-4 text-white"
         style={{ textAlign: "center" }}
       >
-        Genvision Events
+        More Events Coming Soon
       </h1>
 
       <div className="row g-4 justify-content-center">
