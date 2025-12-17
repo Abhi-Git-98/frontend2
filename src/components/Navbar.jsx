@@ -53,9 +53,7 @@ export default function Navbar() {
 
       {/* 🏞️ Hero Section (visible only at top) */}
       <header className={`hero-section ${scrolled ? "fade-out" : "fade-in"}`}>
-      {/* <section className="hero-section"> */}
-          {/* <h1 className="hero-text"></h1> */}
-      {/* </section> */}
+
       </header>
      
 
@@ -65,9 +63,10 @@ export default function Navbar() {
           scrolled ? "scrolled-nav" : "transparent-nav"
         }`}
       >
-        <div className="container navsize">
-          <Link className="navbar-brand fw-bold text-black" to="/">
-              <img src={`https://genvision-26.onrender.com/uploads/genvision_logo.jpeg}`} alt="genvision logo" />
+        <div className="container navsize"style={{marginBottom:"5px"}}>
+          <Link className="navbar-brand fw-bold text-black"  to="/">
+              <img src="https://genvision-26.onrender.com/uploads/genvision_logo.jpeg" alt="genvision logo" style={{ width: "50px", height:"50px", borderRadius: "50%" }} />
+              Genvision 2026
           </Link>
 
           <button
