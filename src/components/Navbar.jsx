@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/navbar.css";
+import News from "./News"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -88,10 +89,11 @@ export default function Navbar() {
               {/* <li className="nav-item" style={{MarginLeft:"10%"}}><Link className="nav-link text-black register-btn center" to="/Login">Login</Link></li> */}
 
             </ul>
-            
+            <News />
           </div>
         </div>
       </nav>
+      
        
     </>
   );

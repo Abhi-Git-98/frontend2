@@ -11,7 +11,6 @@ import Form from "./components/GoogleForm";
 import Coordinators from "./components/Coordinators";
 import Footer from "./components/Footer";
 import About from "./components/About";
-import News from "./components/News"
 import Login from "./components/Login";
 import ParticipantDashboard from "./components/ParticipantDashboard";
 import PrivateRoute from "./components/PrivateRoute";
@@ -33,7 +32,6 @@ export default function App() {
         // 🌐 Normal public site view
         <>
           <Navbar />
-          <News />
           <Routes>
             <Route path="/admin-register" element={<AdminRegister />} />
             <Route path="/" element={<About />} />
