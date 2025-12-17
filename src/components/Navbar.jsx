@@ -67,7 +67,7 @@ export default function Navbar() {
       >
         <div className="container navsize">
           <Link className="navbar-brand fw-bold text-black" to="/">
-            GenVision
+              <img src={`https://genvision-26.onrender.com/uploads/genvision_logo.jpeg}`} alt="genvision logo" />
           </Link>
 
           <button
