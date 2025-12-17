@@ -80,7 +80,7 @@ export default function Dashboard() {
           {data.events.map((event) => (
             <div key={event._id} className="event-card">
               <img
-                src={`http://localhost:5000/${event.image.replace(/^\/+/, "")}`}
+                src={`https://genvision-26.onrender.com/${event.image.replace(/^\/+/, "")}`}
                 alt={event.title}
                 className="event-image"
               />
