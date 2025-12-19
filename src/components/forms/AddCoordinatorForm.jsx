@@ -106,7 +106,7 @@ export default function AddCoordinatorForm() {
             placeholder="Contact"
           />
         </div>
-        <div className="col-md-2">
+        {/* <div className="col-md-2">
           <label className="form-label">Image</label>
           <input
             type="file"
@@ -121,7 +121,7 @@ export default function AddCoordinatorForm() {
               style={{ width: "150px", height: "200px", objectFit: "cover" }}
             />
           )}
-        </div>
+        </div> */}
         <div className="col-md-2">
           <button
             type="submit"

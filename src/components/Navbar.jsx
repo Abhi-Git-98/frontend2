@@ -2,72 +2,76 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/navbar.css";
-import News from "./News"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
-  window.addEventListener("scroll", () => {
-  const hero = document.querySelector(".hero-section");
-  const scrollY = window.scrollY;
-
-  // 🔥 जर थोडंसुद्धा scroll झालं (>= 1 pixel), opacity कमी कर
-  if (scrollY > 0) {
-    if(hero){
-      hero.style.opacity = 1 - Math.min(scrollY / 50, 1); // जलद fade
-    }
-  } else {
-    if(hero){
-       hero.style.opacity = 1;
-    }
-  }
-});
-
+  // 🔥 Scroll effect + hero fade
   useEffect(() => {
     const handleScroll = () => {
-      // जरा जरी scroll झाला तरी hero-section गायब
-      setScrolled(window.scrollY > 10);
+      const scrollY = window.scrollY;
+      const hero = document.querySelector(".hero-section");
+
+      setScrolled(scrollY > 10);
+
+      if (hero) {
+        hero.style.opacity = scrollY > 0
+          ? 1 - Math.min(scrollY / 50, 1)
+          : 1;
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-   useEffect(() => {
-  const handleScroll = () => {
-    const hero = document.querySelector(".hero-section");
-    const scrollY = window.scrollY;
-    if (scrollY > 0) {
-      hero.style.opacity = 1 - Math.min(scrollY / 50, 1);
-    } else {
-      hero.style.opacity = 1;
-    }
-  };
+  // 🔥 Navbar height → CSS variable (for News ticker)
+  useEffect(() => {
+    const navbar = document.getElementById("navbar");
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+    const setNavHeight = () => {
+      if (navbar) {
+        document.documentElement.style.setProperty(
+          "--nav-height",
+          navbar.offsetHeight + "px"
+        );
+      }
+    };
+
+    setNavHeight();
+    window.addEventListener("resize", setNavHeight);
+
+    return () => window.removeEventListener("resize", setNavHeight);
+  }, []);
 
   return (
     <>
-      {/* 🌆 Second Background (always behind) */}
+      {/* 🌆 Background */}
       <div className={`background-main ${scrolled ? "visible" : ""}`} />
 
-      {/* 🏞️ Hero Section (visible only at top) */}
-      <header className={`hero-section ${scrolled ? "fade-out" : "fade-in"}`}>
-
-      </header>
-     
+      {/* 🏞️ Hero */}
+      <header className={`hero-section ${scrolled ? "fade-out" : "fade-in"}`} />
 
       {/* 🌙 Navbar */}
       <nav
+        id="navbar"
         className={`navbar navbar-expand-lg fixed-top ${
           scrolled ? "scrolled-nav" : "transparent-nav"
         }`}
       >
-        <div className="container navsize"style={{marginBottom:"5px"}}>
-          <Link className="navbar-brand fw-bold text-black"  to="/">
-              <img src="https://genvision-26.onrender.com/uploads/genvision_logo.jpeg" alt="genvision logo" style={{ width: "50px", height:"50px", borderRadius: "50%" }} />
-              Genvision 2026
+        <div className="container navsize">
+          <Link className="navbar-brand fw-bold text-black" to="/">
+            <img
+              src="https://genvision-26.onrender.com/uploads/genvision_logo.jpeg"
+              alt="genvision logo"
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                marginRight: "8px",
+              }}
+            />
+            Genvision 2026
           </Link>
 
           <button
@@ -79,22 +83,46 @@ export default function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
             <ul className="navbar-nav text-center">
-              <li className="nav-item"><Link className="nav-link text-black" to="/">About</Link></li>
-              <li className="nav-item"><Link className="nav-link text-black" to="/Events">Events</Link></li>
-              <li className="nav-item"><Link className="nav-link text-black" to="/Coordinators">Coordinators</Link></li>
-              <li className="nav-item"><Link className="nav-link text-black" to="/Guests">Guests</Link></li>
-              <li className="nav-item" style={{MarginLeft:"10%"}}><Link className="nav-link text-black register-btn center" to="/Participants">Join Us</Link></li>
-              {/* <li className="nav-item" style={{MarginLeft:"10%"}}><Link className="nav-link text-black register-btn center" to="/Login">Login</Link></li> */}
-
+              <li className="nav-item">
+                <Link className="nav-link text-black" to="/">
+                  About
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-black" to="/Events">
+                  Events
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-black" to="/Coordinators">
+                  Coordinators
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-black" to="/Guests">
+                  Guests
+                </Link>
+              </li>
+              <li className="nav-item ms-lg-3">
+                <Link
+                  className="nav-link text-black register-btn"
+                  to="/Participants"
+                >
+                  Join Us
+                </Link>
+              </li>
             </ul>
-            <News />
           </div>
         </div>
       </nav>
-      
-       
+
+      {/* 📰 News ticker — navbar च्या लगेच खाली */}
+   
     </>
   );
 }

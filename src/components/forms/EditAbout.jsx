@@ -176,7 +176,7 @@ const removeGalleryImage = (index) => {
     src={
       s.logoPreview
         ? s.logoPreview // blob file selected, local preview
-        : `https://genvision-26.onrender.com/api${s.logo}` // existing server image
+        : `https://genvision-26.onrender.com${s.logo}` // existing server image
     }
     alt={s.name || "Sponsor Preview"}
     style={{ width: "100px", height: "80px", objectFit: "cover" }}

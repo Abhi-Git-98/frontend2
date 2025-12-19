@@ -109,6 +109,11 @@
   .nav-link:hover{
     color: black;
   }
+    #navbar {
+    /* position: sticky; */
+    top: 0;
+    z-index: 9999;
+  }
 }
 
 .register-btn {

@@ -25,3 +25,10 @@
   100% { transform: translateX(-100%); }
 }
 
+
+@media (max-width: 768px) {
+  .news-ticker {
+    position: sticky;
+    top: var(--nav-height);
+  }
+}

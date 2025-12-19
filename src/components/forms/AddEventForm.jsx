@@ -109,8 +109,8 @@ export default function ManageEvents() {
         <input type="date" name="date" value={form.date} onChange={handleChange} className="col-md-6 p-2 border rounded" required />
         <input type="time" name="time" value={form.time} onChange={handleChange} className="col-md-6 p-2 border rounded" />
         <input type="text" name="venue" value={form.venue} onChange={handleChange} placeholder="Venue" className="col-md-6 p-2 border rounded" required />
-        <input type="file" onChange={(e) => setImageFile(e.target.files[0])} className="form-control col-md-2" />
-        {imageFile && <img src={URL.createObjectURL(imageFile)} alt="Preview" className="img-thumbnail mt-2" style={{ width: "150px", height: "200px", objectFit: "cover" }} />}
+        {/* <input type="file" onChange={(e) => setImageFile(e.target.files[0])} className="form-control col-md-2" />
+        {imageFile && <img src={URL.createObjectURL(imageFile)} alt="Preview" className="img-thumbnail mt-2" style={{ width: "150px", height: "200px", objectFit: "cover" }} />} */}
         <button type="submit" className={`px-4 py-2 rounded text-white ${editingId ? "bg-yellow-500 hover:bg-yellow-600" : "bg-blue-600 hover:bg-blue-700"}`}>
           {editingId ? "Update Event" : "Add Event"}
         </button>

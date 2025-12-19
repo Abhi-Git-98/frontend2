@@ -118,7 +118,7 @@ export default function AddGuestForm() {
           ></textarea>
         </div>
 
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <label className="form-label">Image</label>
           <input
             type="file"
@@ -133,7 +133,7 @@ export default function AddGuestForm() {
               style={{ width: "150px", height: "200px", objectFit: "cover" }}
             />
           )}
-        </div>
+        </div> */}
 
         <div className="text-center">
           <button
