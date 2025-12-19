@@ -14,7 +14,7 @@ import About from "./components/About";
 import Login from "./components/Login";
 import ParticipantDashboard from "./components/ParticipantDashboard";
 import PrivateRoute from "./components/PrivateRoute";
-import News from "./News";
+import News from "./components/News";
 
 // ⚙️ Admin components
 import AdminLogin from "./components/AdminLogin";
