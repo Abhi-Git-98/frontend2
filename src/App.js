@@ -14,7 +14,7 @@ import About from "./components/About";
 import Login from "./components/Login";
 import ParticipantDashboard from "./components/ParticipantDashboard";
 import PrivateRoute from "./components/PrivateRoute";
-import News from "./components/News";
+// import News from "./components/News";
 
 // ⚙️ Admin components
 import AdminLogin from "./components/AdminLogin";
@@ -33,7 +33,7 @@ export default function App() {
         // 🌐 Normal public site view
         <>
           <Navbar />
-          <News />
+          {/* <News /> */}
           <Routes>
             <Route path="/admin-register" element={<AdminRegister />} />
             <Route path="/" element={<About />} />
