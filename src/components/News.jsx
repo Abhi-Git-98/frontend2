@@ -49,9 +49,11 @@ export default function NewsTicker() {
     <>
       {show && (
         <div className="news-ticker" ref={tickerRef}>
-          <div className="news-ticker-content" ref={textRef}>
-            🔴 Registration are open  🔴 
-          </div>
+            <div className="news-ticker-track">
+                <span>🔴 Registrations are open 🔴</span>
+                <span>🔴 Registrations are open 🔴</span>
+                <span>🔴 Registrations are open 🔴</span>
+            </div>
         </div>
       )}
     </>
