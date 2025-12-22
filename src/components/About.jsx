@@ -197,40 +197,25 @@ useEffect(() => {
       >
         Genvision Events
       </h1>
-      <div className="row g-5 justify-content-center">
-      
-        {events.map((c) => (
-          <div key={c._id} className="col-6 col-md-4 col-lg-3">
-            <div
-              className="event-card bg-white shadow"
-              style={{
-                height:"auto",
-                marginLeft: "5px",
-                marginRight: "5px",
-                borderRadius: "10px",
-                backgroundImage: `url(${baseURL}${c.image})`,
-                backgroundSize: "fit",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                backGroundFit: "Fit"
-              }}
-            >
-            {c.image && (
+        <div className="d-flex flex-wrap justify-content-center gap-4">
+          {events.map((g) => (
+            <div key={g._id} className="guest-card margin-x" style={{marginRight:"10px",marginLeft:"10px"}}>
+              <div className="guest-img-wrapper">
                 <img
-                  src={`https://genvision-26.onrender.com/${c.image.replace(/^\/+/, "")}`}
-                  alt={c.name}
-                  className="img-fluid"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              )}
+  src={`https://genvision-26.onrender.com${g.image.startsWith("/") ? g.image : "/" + g.image}`}
+  alt={g.name}
+  className="card-img-top"
+  style={{ height: "400px", objectFit: "cover" }}
+/>
+                <div className="guest-overlay">
+                  <h4>{g.name}</h4>
+                  <p className="designation">{g.designation}</p>
+                  <p className="desc">{g.description}</p>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
       {/* Gallery */}
       {about.gallery.length > 0 && (

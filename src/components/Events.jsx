@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../api";
+import "../css/guests.css";
 
 export default function Events() {
   const [events, setEvents] = useState([]);
@@ -19,37 +20,24 @@ export default function Events() {
         More Events Coming Soon...
       </h1>
 
-      <div className="row g-4 justify-content-center">
-        {events.map((ev) => (
-          <div key={ev._id} className="col-6 col-md-4 col-lg-3 ">
-            <div
-              className="card shadow"
-              style={{
-                borderRadius: "10px",
-                overflow: "hidden",
-                backgroundColor: "#fff",
-                marginRight:"10px",
-                marginLeft:"10px"
-              }}
-            >
-              {ev.image && (
+        <div className="d-flex flex-wrap justify-content-center gap-4">
+          {events.map((g) => (
+            <div key={g._id} className="guest-card margin-x" style={{marginRight:"10px",marginLeft:"10px"}}>
+              <div className="guest-img-wrapper">
                 <img
-                  src={`https://genvision-26.onrender.com/${ev.image.replace(/^\/+/, "")}`}
-                  alt={ev.name}
-                  className="img-fluid"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              )}
-
-              
+  src={`https://genvision-26.onrender.com${g.image.startsWith("/") ? g.image : "/" + g.image}`}
+  alt={g.name}
+  className="card-img-top"
+  style={{ height: "400px", objectFit: "cover" }}
+/>
+                <div className="guest-overlay">
+                  <h4>{g.name}</h4>
+                  <p className="desc">{g.description}</p>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
     </div>
   );
 }
