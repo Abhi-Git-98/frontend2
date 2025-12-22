@@ -166,7 +166,7 @@
 
   /* Event Cards */
   .events-grid {
-    grid-template-columns: 1fr; /* ONE CARD PER ROW */
+    grid-template-columns: 2fr; /* ONE CARD PER ROW */
     gap: 18px;
   }
 
