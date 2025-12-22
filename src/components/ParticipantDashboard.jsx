@@ -95,10 +95,17 @@ export default function Dashboard() {
                   onClick={() =>
                     toggleParticipation(event._id, event.participated)
                   }
+                    disabled={
+                        !event.participated &&
+                       event.currentParticipants >= event.maxParticipants}
                 >
-                  {event.participated
+                  {
+                   event.participated
                     ? "Cancel Participation ❌"
-                    : "Participate 🚀"}
+                    : event.currentParticipants >= event.maxParticipants
+                    ? "Event Full 🚫"
+                    : "Participate 🚀"
+                  }
                 </button>
               </div>
             </div>
