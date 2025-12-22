@@ -60,7 +60,9 @@ export default function Dashboard() {
           <h2>Welcome, {data.fullName} </h2>
           <p><b>Email:</b> {data.email}</p>
           <p><b>Group:</b> {data.groupKeyword || "Individual"}</p>
-          <p><b>Payment Status:</b> {data.paymentStatus==="confirmed"? "Your Payment is Confirmed" : "Your Payment is not confirmed yet"}</p>
+          <p>
+            <b>Payment Status:</b> {data.paymentStatus==="confirmed"? "Your Payment is Confirmed" : "Your Payment is not confirmed yet"}
+          </p>
 
           <button
             className="btn-logout"
@@ -69,7 +71,7 @@ export default function Dashboard() {
               navigate("/login", { replace: true });
             }}
           >
-            Logout 
+            Logout
           </button>
         </div>
 
@@ -89,18 +91,16 @@ export default function Dashboard() {
                 <h4>{event.title}</h4>
 
                 <button
-                  className={`btn-action ${
-                    event.participated ? "btn-cancel" : "btn-participate"
-                  }`}
+                  className={`btn-action ${event.participated ? "btn-cancel" : "btn-participate"}`}
                   onClick={() =>
                     toggleParticipation(event._id, event.participated)
                   }
-                    disabled={
-                        !event.participated &&
-                       event.currentParticipants >= event.maxParticipants}
+                  disabled={
+                    !event.participated &&
+                    event.currentParticipants >= event.maxParticipants
+                  }
                 >
-                  {
-                   event.participated
+                  {event.participated
                     ? "Cancel Participation ❌"
                     : event.currentParticipants >= event.maxParticipants
                     ? "Event Full 🚫"

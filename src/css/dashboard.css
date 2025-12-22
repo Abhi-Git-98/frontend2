@@ -124,3 +124,80 @@
 .btn-cancel:hover {
   background: #16a34a;
 }
+
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .dashboard-bg {
+    padding: 15px;
+  }
+
+  /* Profile Card */
+  .profile-card {
+    padding: 18px;
+    margin-bottom: 20px;
+  }
+
+  .profile-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .profile-card p {
+    font-size: 0.9rem;
+  }
+
+  .btn-logout {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  /* Events Title */
+  .events-title {
+    font-size: 1.4rem;
+  }
+
+  /* Event Cards */
+  .events-grid {
+    grid-template-columns: 1fr; /* ONE CARD PER ROW */
+    gap: 18px;
+  }
+
+  .event-image {
+    height: 180px;
+  }
+
+  .event-body h4 {
+    font-size: 1rem;
+  }
+
+  .btn-action {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .event-image {
+    height: 150px;
+  }
+
+  .profile-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .events-title {
+    font-size: 1.2rem;
+  }
+
+  .btn-action {
+    font-size: 0.85rem;
+  }
+}
