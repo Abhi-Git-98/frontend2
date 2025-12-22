@@ -23,7 +23,7 @@ export default function Login() {
   return (
     <div className="login-bg">
       <form onSubmit={handleLogin} className="login-card">
-        <h1>Participant Login</h1>
+        <h1>Login</h1>
         {error && <p className="error-msg">{error}</p>}
 
         <input
