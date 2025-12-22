@@ -17,7 +17,7 @@ export default function Events() {
         className="text-3xl font-bold mb-4 text-white"
         style={{ textAlign: "center" }}
       >
-        More Events Coming Soon...
+        Events
       </h1>
 
         <div className="d-flex flex-wrap justify-content-center gap-4">
