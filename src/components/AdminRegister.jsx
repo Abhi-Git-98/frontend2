@@ -11,6 +11,7 @@ export default function AdminRegister() {
     e.preventDefault();
 
     // 🔒 IITB email restriction
+    
     if (!form.email.endsWith("@iitb.ac.in")) {
       alert("❌ only iitb email allowed!");
       return;
