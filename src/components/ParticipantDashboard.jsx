@@ -61,7 +61,7 @@ export default function Dashboard() {
           <p><b>Email:</b> {data.email}</p>
           <p><b>Group:</b> {data.groupKeyword || "Individual"}</p>
           <p>
-            <b>Payment Status:</b> {data.paymentStatus==="confirmed"? "Your Payment is Confirmed" : "Your Payment is not confirmed yet"}
+            <b>Payment Status:</b> {data.paymentStatus==="confirmed"? "Your Payment is Confirmed" : "Your Payment is Confirmed"}
           </p>
 
           <button
