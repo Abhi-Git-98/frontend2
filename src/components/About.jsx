@@ -6,8 +6,6 @@ import "../css/about.css";
 import { aboutFallback } from "../fallback/aboutFallback";
 import { eventsFallback } from "../fallback/eventsFallback";
 
-
-
 export default function AboutPage() {
   const [about, setAbout] = useState(null);
   const [events, setEvents] = useState([]);
@@ -16,52 +14,52 @@ export default function AboutPage() {
 
   const baseURL = "https://genvision-26.onrender.com"; // Server base URL
 
- const LazyImage = ({ src, alt, className, style }) => {
-  if (!src) return null;
+  const LazyImage = ({ src, alt, className, style }) => {
+    if (!src) return null;
 
-  let finalSrc = src;
+    let finalSrc = src;
 
-  // Static fallback paths → don't attach baseURL
-  if (!src.startsWith("http") && !src.startsWith("/fallback")) {
-    finalSrc = `${baseURL}${src}`;
-  }
+    // Static fallback paths → don't attach baseURL
+    if (!src.startsWith("http") && !src.startsWith("/fallback")) {
+      finalSrc = `${baseURL}${src}`;
+    }
 
-  return (
-    <img
-      src={finalSrc}
-      alt={alt}
-      loading="lazy"
-      className={className}
-      style={{ objectFit: "cover", ...style }}
-    />
-  );
-};
+    return (
+      <img
+        src={finalSrc}
+        alt={alt}
+        loading="lazy"
+        className={className}
+        style={{ objectFit: "cover", ...style }}
+      />
+    );
+  };
 
   useEffect(() => {
-  const fetchAbout = async () => {
-    try {
-      const res = await API.get("/about");
-      setAbout(res.data);
-    } catch (err) {
-      console.error("Backend down → loading fallback About");
-      setAbout(aboutFallback);  // ⭐ fallback येथे
-    }
-  };
-  fetchAbout();
-}, []);
+    const fetchAbout = async () => {
+      try {
+        const res = await API.get("/about");
+        setAbout(res.data);
+      } catch (err) {
+        console.error("Backend down → loading fallback About");
+        setAbout(aboutFallback); // ⭐ fallback येथे
+      }
+    };
+    fetchAbout();
+  }, []);
 
-useEffect(() => {
-  const fetchEvents = async () => {
-    try {
-      const res = await API.get("/events");
-      setEvents(res.data);
-    } catch (err) {
-      console.error("Backend down → loading fallback Events");
-      setEvents(eventsFallback); // ⭐ fallback येथे
-    }
-  };
-  fetchEvents();
-}, []);
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await API.get("/events");
+        setEvents(res.data);
+      } catch (err) {
+        console.error("Backend down → loading fallback Events");
+        setEvents(eventsFallback); // ⭐ fallback येथे
+      }
+    };
+    fetchEvents();
+  }, []);
 
   // Handle resize
   useEffect(() => {
@@ -98,17 +96,37 @@ useEffect(() => {
           >
             {/* Poster */}
             {about.poster && (
-              <div style={{ flex: "0 0 auto", maxWidth: "400px", width: "100%", borderRadius: "12px", overflow: "hidden" }}>
+              <div
+                style={{
+                  flex: "0 0 auto",
+                  maxWidth: "400px",
+                  width: "100%",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                }}
+              >
                 <LazyImage
                   src={about.poster}
                   alt="Poster"
-                  style={{ width: "100%", height: "500px", display: "block", borderRadius: "12px" }}
+                  style={{
+                    width: "100%",
+                    height: "500px",
+                    display: "block",
+                    borderRadius: "12px",
+                  }}
                 />
               </div>
             )}
 
             {/* Description */}
-            <div style={{ flex: 1, minWidth: "250px", display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                flex: 1,
+                minWidth: "250px",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
               <p
                 style={{
                   fontSize: "1.4rem",
@@ -127,7 +145,15 @@ useEffect(() => {
             </div>
           </div>
         ) : (
-          <div style={{ perspective: "1000px", maxWidth: "400px", margin: "0 auto 30px", borderRadius: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
+          <div
+            style={{
+              perspective: "1000px",
+              maxWidth: "400px",
+              margin: "0 auto 30px",
+              borderRadius: "12px",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            }}
+          >
             <div
               onClick={() => setFlipped((prev) => !prev)}
               style={{
@@ -140,122 +166,159 @@ useEffect(() => {
               }}
             >
               {/* Front */}
-              <div style={{ backfaceVisibility: "hidden", width: "100%", borderRadius: "12px", overflow: "hidden" }}>
+              <div
+                style={{
+                  backfaceVisibility: "hidden",
+                  width: "100%",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                }}
+              >
                 <LazyImage
-  src={about.poster}
-  alt="Poster"
-  style={{
-    width: "250px",
-    height: "350px",
-    objectFit: "cover",
-    borderRadius: "12px",
-  }}
-/>
+                  src={about.poster}
+                  alt="Poster"
+                  style={{
+                    width: "250px",
+                    height: "350px",
+                    objectFit: "cover",
+                    borderRadius: "12px",
+                  }}
+                />
               </div>
               {/* Back */}
-                <div
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%", // ⭐ match with poster
-        backfaceVisibility: "hidden",
-        transform: "rotateY(180deg)",
-        backgroundColor: "#f9f9f9",
-        padding: "15px",
-        borderRadius: "12px",
-        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-        display: "flex",
-        alignItems: "center",      // ⭐ vertically center text
-        justifyContent: "center",  // ⭐ center text horizontally
-      }}
-    >
-      <p
-        style={{
-          fontSize: "0.55rem",
-          lineHeight: "1.5rem",
-          color: "#333",
-          textAlign: "justify",
-          margin: 0,
-          maxHeight: "100%",
-          overflowY: "auto"         // ⭐ scroll if text is long
-        }}
-      >
-        {about.description}
-      </p>
-    </div>
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%", // ⭐ match with poster
+                  backfaceVisibility: "hidden",
+                  transform: "rotateY(180deg)",
+                  backgroundColor: "#f9f9f9",
+                  padding: "15px",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                  display: "flex",
+                  alignItems: "center", // ⭐ vertically center text
+                  justifyContent: "center", // ⭐ center text horizontally
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "0.55rem",
+                    lineHeight: "1.5rem",
+                    color: "#333",
+                    textAlign: "justify",
+                    margin: 0,
+                    maxHeight: "100%",
+                    overflowY: "auto", // ⭐ scroll if text is long
+                  }}
+                >
+                  {about.description}
+                </p>
+              </div>
             </div>
           </div>
         )}
       </div>
 
       {/* Events */}
-       <h1
+      <h1
         className="text-3xl font-bold mb-4 text-white"
         style={{ textAlign: "center" }}
       >
         Genvision Events
       </h1>
-        <div className="d-flex flex-wrap justify-content-center gap-4">
-          {events.map((g) => (
-            <div key={g._id} className="guest-card margin-x" style={{marginRight:"10px",marginLeft:"10px"}}>
-              <div className="guest-img-wrapper">
-                <img
-  src={`https://genvision-26.onrender.com${g.image.startsWith("/") ? g.image : "/" + g.image}`}
-  alt={g.name}
-  className="card-img-top"
-  style={{ height: "400px", objectFit: "cover" }}
-/>
-                <div className="guest-overlay">
-                  <h4>{g.name}</h4>
-                  <p className="designation">{g.designation}</p>
-                  <p className="desc">{g.description}</p>
-                </div>
+      <div className="d-flex flex-wrap justify-content-center gap-4">
+        {events.map((g) => (
+          <div
+            key={g._id}
+            className="guest-card margin-x"
+            style={{ marginRight: "10px", marginLeft: "10px" }}
+          >
+            <div className="guest-img-wrapper">
+              <img
+                src={`https://genvision-26.onrender.com${
+                  g.image.startsWith("/") ? g.image : "/" + g.image
+                }`}
+                alt={g.name}
+                className="card-img-top"
+                style={{ height: "400px", objectFit: "cover" }}
+              />
+              <div className="guest-overlay">
+                <h4>{g.name}</h4>
+                <p className="desc">{g.description}</p>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
 
       {/* Gallery */}
       {about.gallery.length > 0 && (
-    <Carousel
-  className="mb-4 custom-carousel carousel-fade"
-  interval={2000}
-  pause="hover"
-  style={{
-    borderRadius: "20px",
-    marginTop: "10%",
-    overflow: "hidden",
-  }}
->
-  {about.gallery.map((img, idx) => (
-    <Carousel.Item key={idx}>
-      <LazyImage
-        src={img}
-        alt={`Gallery ${idx}`}
-        style={{
-          width: "100%",
-          height: "500px",
-          objectFit: "cover",
-          borderRadius: "20px",
-        }}
-      />
-    </Carousel.Item>
-  ))}
-</Carousel>
+        <Carousel
+          className="mb-4 custom-carousel carousel-fade"
+          interval={2000}
+          pause="hover"
+          style={{
+            borderRadius: "20px",
+            marginTop: "10%",
+            overflow: "hidden",
+          }}
+        >
+          {about.gallery.map((img, idx) => (
+            <Carousel.Item key={idx}>
+              <LazyImage
+                src={img}
+                alt={`Gallery ${idx}`}
+                style={{
+                  width: "100%",
+                  height: "500px",
+                  objectFit: "cover",
+                  borderRadius: "20px",
+                }}
+              />
+            </Carousel.Item>
+          ))}
+        </Carousel>
       )}
 
       {/* Sponsors */}
-      <div style={{ backgroundColor: "#fff", width: "100%", padding: "20px 0", marginBottom: "4%" }}>
+      <div
+        style={{
+          backgroundColor: "#fff",
+          width: "100%",
+          padding: "20px 0",
+          marginBottom: "4%",
+        }}
+      >
         <h3 className="text-center mb-3">Our Past Sponsers</h3>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "24px", justifyContent: "center", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "24px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           {about.sponsors.map((s, idx) => (
-            <div key={idx} className="col-6 col-md-4 col-lg-3" style={{ flex: "0 0 140px", textAlign: "center" }}>
+            <div
+              key={idx}
+              className="col-6 col-md-4 col-lg-3"
+              style={{ flex: "0 0 140px", textAlign: "center" }}
+            >
               <LazyImage
                 src={s.logo}
                 alt={s.name}
-                style={{ borderRadius: "8px", objectFit: "contain", backgroundColor: "#fff", width: "140px", height: "80px" }}
+                style={{
+                  borderRadius: "8px",
+                  objectFit: "contain",
+                  backgroundColor: "#fff",
+                  width: "140px",
+                  height: "80px",
+                }}
               />
             </div>
           ))}
@@ -264,4 +327,3 @@ useEffect(() => {
     </div>
   );
 }
-

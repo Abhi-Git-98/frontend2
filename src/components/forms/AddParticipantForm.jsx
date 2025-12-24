@@ -5,9 +5,13 @@ export default function ManageParticipants() {
   const [participants, setParticipants] = useState([]);
   const [editing, setEditing] = useState(null);
 
-  // -----------------------------------------------
-  // Fetch Participants (WITH populated events)
-  // -----------------------------------------------
+  // 🔍 Search & Filters
+  const [search, setSearch] = useState("");
+  const [filterAccommodation, setFilterAccommodation] = useState("");
+  const [filterEvent, setFilterEvent] = useState("");
+  const [filterCollege, setFilterCollege] = useState("");
+
+  // ---------------- FETCH ----------------
   useEffect(() => {
     fetchParticipants();
   }, []);
@@ -16,98 +20,140 @@ export default function ManageParticipants() {
     try {
       const res = await API.get("/participants");
       setParticipants(res.data);
-    } catch (err) {
-      alert("Failed to fetch participants");
+    } catch {
+      alert("Participants fetch failed 😵");
     }
   };
 
-  // -----------------------------------------------
-  // Open Edit Form
-  // -----------------------------------------------
+  // ---------------- EDIT ----------------
   const handleEdit = (p) => {
     setEditing({
       ...p,
       paymentStatus: p.paymentStatus?.toLowerCase() || "pending",
       accommodationStatus: p.accommodationStatus?.toLowerCase() || "pending",
-      // 🔥 IMPORTANT: events AS OBJECTS, NOT IDs
       events: p.events || [],
     });
   };
 
-  // const handleSync = async () => {
-  //   try {
-  //     const res = await API.post("/participants/sync");
-  //     if (res.data.success) {
-  //       alert("Sync successful! ✅");
-  //     } 
-  //   } catch (err) {
-  //     alert("Sync failed 😵");
-  //     console.error(err);
-  //   }}
-
-
-  // -----------------------------------------------
-  // Update Editable Fields
-  // -----------------------------------------------
   const handleChange = (e) => {
     setEditing({ ...editing, [e.target.name]: e.target.value });
   };
 
-  // -----------------------------------------------
-  // Save Updated Participant
-  // -----------------------------------------------
   const handleUpdate = async (e) => {
     e.preventDefault();
-
     try {
-      const payload = {
+      await API.put(`/participants/${editing._id}`, {
         paymentStatus: editing.paymentStatus,
         accommodationStatus: editing.accommodationStatus,
-      };
-
-      await API.put(`/participants/${editing._id}`, payload);
-
-      alert("Participant updated successfully ✅");
-      await fetchParticipants();
+      });
+      alert("Participant updated ✅");
       setEditing(null);
-    } catch (err) {
-      alert("Error updating participant ❌");
+      fetchParticipants();
+    } catch {
+      alert("Update failed ❌");
     }
   };
 
-  // -----------------------------------------------
-  // Delete Participant
-  // -----------------------------------------------
+  // ---------------- DELETE ----------------
   const handleDelete = async (id) => {
-    if (!window.confirm("Delete this participant?")) return;
-
+    if (!window.confirm("Delete participant?")) return;
     try {
       await API.delete(`/participants/${id}`);
       setParticipants((prev) => prev.filter((p) => p._id !== id));
-      alert("Deleted successfully 🗑️");
+      alert("Deleted 🗑️");
     } catch {
-      alert("Delete failed");
+      alert("Delete failed ❌");
     }
   };
 
-  // -----------------------------------------------
-  // JSX
-  // -----------------------------------------------
+  // ---------------- FILTER LOGIC ----------------
+  const filteredParticipants = participants.filter((p) => {
+    const searchMatch =
+      p.fullName?.toLowerCase().includes(search.toLowerCase()) ||
+      p.email?.toLowerCase().includes(search.toLowerCase()) ||
+      p.mobileNumber?.includes(search) ||
+      p.institution?.toLowerCase().includes(search.toLowerCase());
+
+    const accommodationMatch = filterAccommodation
+      ? p.accommodationStatus === filterAccommodation
+      : true;
+
+    const eventMatch = filterEvent
+      ? p.events?.some((e) => e.name === filterEvent)
+      : true;
+
+    const collegeMatch = filterCollege ? p.institution === filterCollege : true;
+
+    return searchMatch && accommodationMatch && eventMatch && collegeMatch;
+  });
+
+  const uniqueEvents = [
+    ...new Set(
+      participants.flatMap((p) => (p.events ? p.events.map((e) => e.name) : []))
+    ),
+  ];
+
+  const uniqueColleges = [...new Set(participants.map((p) => p.institution))];
+
+  // ---------------- JSX ----------------
   return (
     <div className="container my-4">
       <h2 className="fw-bold mb-3">🎓 Participants List</h2>
-          {/* <button
-      onClick={handleSync}
-      style={{
-        padding: "10px 20px",
-        background: "#111",
-        color: "#fff",
-        borderRadius: "8px",
-        cursor: "pointer",
-      }}
-    >
-      🔄 Sync Participants
-    </button> */}
+
+      {/* 🔍 SEARCH & FILTERS */}
+      <div className="row g-3 mb-3">
+        <div className="col-md-4">
+          <input
+            className="form-control"
+            placeholder="🔍 Search name / email / phone / college"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+
+        <div className="col-md-2">
+          <select
+            className="form-select"
+            value={filterAccommodation}
+            onChange={(e) => setFilterAccommodation(e.target.value)}
+          >
+            <option value="">All Accommodation</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+
+        <div className="col-md-3">
+          <select
+            className="form-select"
+            value={filterEvent}
+            onChange={(e) => setFilterEvent(e.target.value)}
+          >
+            <option value="">All Events</option>
+            {uniqueEvents.map((ev) => (
+              <option key={ev} value={ev}>
+                {ev}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="col-md-3">
+          <select
+            className="form-select"
+            value={filterCollege}
+            onChange={(e) => setFilterCollege(e.target.value)}
+          >
+            <option value="">All Colleges</option>
+            {uniqueColleges.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
 
       {/* TABLE */}
       <div className="table-responsive">
@@ -118,57 +164,25 @@ export default function ManageParticipants() {
               <th>Email</th>
               <th>Phone</th>
               <th>College</th>
-              <th>Event(s)</th>
-              <th>Payment</th>
-              <th>Accommodation Required</th>
-              <th>Accommodation Status</th>
-              <th>Mumbaikar</th>
-              <th>Reg ID</th>
-              {/* <th>Confirmation Email</th> */}
+              <th>Events</th>
+              <th>Accommodation</th>
               <th>Action</th>
             </tr>
           </thead>
 
           <tbody>
-            {participants.map((p) => (
+            {filteredParticipants.map((p) => (
               <tr key={p._id}>
                 <td>{p.fullName}</td>
                 <td>{p.email}</td>
                 <td>{p.mobileNumber}</td>
                 <td>{p.institution}</td>
-
-                {/* EVENTS DISPLAY */}
                 <td>
-                  {p.events && p.events.length > 0
-                    ? p.events.map((ev) => ev.name).join(", ")
+                  {p.events?.length
+                    ? p.events.map((e) => e.name).join(", ")
                     : "—"}
                 </td>
-
-                <td>{p.paymentStatus}</td>
-                <td>{p.accommodationRequired}</td>
                 <td>{p.accommodationStatus}</td>
-                <td>{p.isMumbaikar}</td>
-                <td>{p.registration_id}</td>
-                {/* <td>
-  {p.confirmationEmailSent ? (
-    <span className="badge bg-success">✅ Email Sent</span>
-  ) : (
-    <button
-      className="btn btn-sm btn-primary"
-      onClick={async () => {
-        try {
-          await API.post(`/participants/send-confirmation/${p._id}`);
-          alert("Confirmation email sent 📩");
-          fetchParticipants(); // refresh table
-        } catch (err) {
-          alert("Failed to send email ❌");
-        }
-      }}
-    >
-      📧 Send Email
-    </button>
-  )}
-</td> */}
                 <td className="d-flex gap-2">
                   <button
                     className="btn btn-sm btn-outline-warning"
@@ -176,7 +190,6 @@ export default function ManageParticipants() {
                   >
                     ✏️ Edit
                   </button>
-
                   <button
                     className="btn btn-sm btn-outline-danger"
                     onClick={() => handleDelete(p._id)}
@@ -190,103 +203,101 @@ export default function ManageParticipants() {
         </table>
       </div>
 
-      {/* EDIT FORM */}
+      {/* ================= MODAL ================= */}
       {editing && (
-        <div className="p-4 mt-4 border rounded bg-light shadow-sm">
-          <h4 className="mb-3">
-            Edit Participant:{" "}
-            <span className="text-primary">{editing.fullName}</span>
-          </h4>
+        <div
+          className="modal fade show"
+          style={{
+            display: "block",
+            backgroundColor: "rgba(0,0,0,0.6)",
+          }}
+        >
+          <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">
+                  Edit –{" "}
+                  <span className="text-primary">{editing.fullName}</span>
+                </h5>
+                <button
+                  className="btn-close"
+                  onClick={() => setEditing(null)}
+                ></button>
+              </div>
 
-          <form className="row g-3" onSubmit={handleUpdate}>
-            {/* NAME */}
-            <div className="col-md-6">
-              <label className="form-label fw-semibold">Full Name</label>
-              <div className="form-control bg-light">
-                {editing.fullName}
+              <div className="modal-body">
+                <form className="row g-3" onSubmit={handleUpdate}>
+                  <div className="col-md-6">
+                    <label className="fw-semibold">Name</label>
+                    <div className="form-control bg-light">
+                      {editing.fullName}
+                    </div>
+                  </div>
+
+                  <div className="col-md-6">
+                    <label className="fw-semibold">Email</label>
+                    <div className="form-control bg-light">{editing.email}</div>
+                  </div>
+
+                  <div className="col-md-6">
+                    <label className="fw-semibold">Payment Status</label>
+                    <select
+                      name="paymentStatus"
+                      value={editing.paymentStatus}
+                      onChange={handleChange}
+                      className="form-select"
+                    >
+                      <option value="pending">Pending</option>
+                      <option value="confirmed">Confirmed</option>
+                    </select>
+                  </div>
+
+                  <div className="col-md-6">
+                    <label className="fw-semibold">Accommodation Status</label>
+                    <select
+                      name="accommodationStatus"
+                      value={editing.accommodationStatus}
+                      onChange={handleChange}
+                      className="form-select"
+                    >
+                      <option value="pending">Pending</option>
+                      <option value="confirmed">Confirmed</option>
+                      <option value="rejected">Rejected</option>
+                    </select>
+                  </div>
+
+                  <div className="col-12">
+                    <label className="fw-semibold">Registered Events</label>
+                    {editing.events.length ? (
+                      <ul className="list-group">
+                        {editing.events.map((ev) => (
+                          <li key={ev._id} className="list-group-item">
+                            {ev.name}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <div className="text-muted">No events</div>
+                    )}
+                  </div>
+
+                  <div className="text-center mt-3">
+                    <button className="btn btn-success px-4">💾 Save</button>
+                    <button
+                      type="button"
+                      className="btn btn-secondary ms-3"
+                      onClick={() => setEditing(null)}
+                    >
+                      ❌ Cancel
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
-
-            {/* EMAIL */}
-            <div className="col-md-6">
-              <label className="form-label fw-semibold">Email</label>
-              <div className="form-control bg-light">
-                {editing.email}
-              </div>
-            </div>
-
-            {/* PAYMENT */}
-            <div className="col-md-6">
-              <label className="form-label fw-semibold">Payment Status</label>
-              <select
-                name="paymentStatus"
-                value={editing.paymentStatus}
-                onChange={handleChange}
-                className="form-select"
-              >
-                <option value="pending">Pending</option>
-                <option value="confirmed">Confirmed</option>
-              </select>
-            </div>
-
-            {/* ACCOMMODATION */}
-            <div className="col-md-6">
-              <label className="form-label fw-semibold">
-                Accommodation Status
-              </label>
-              <select
-                name="accommodationStatus"
-                value={editing.accommodationStatus}
-                onChange={handleChange}
-                className="form-select"
-              >
-                <option value="pending">Pending</option>
-                <option value="confirmed">Confirmed</option>
-                <option value="rejected">Rejected</option>
-              </select>
-            </div>
-
-            {/* EVENTS – VIEW ONLY */}
-            <div className="col-md-12">
-              <label className="form-label fw-semibold">
-                Registered Events
-              </label>
-
-              {editing.events && editing.events.length > 0 ? (
-                <ul className="list-group">
-                  {editing.events.map((ev) => (
-                    <li key={ev._id} className="list-group-item">
-                      {ev.name}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <div className="text-muted">
-                  No events registered
-                </div>
-              )}
-            </div>
-
-            {/* ACTIONS */}
-            <div className="text-center mt-4">
-              <button
-                type="submit"
-                className="btn btn-success px-4 fw-semibold"
-              >
-                💾 Save Changes
-              </button>
-
-              <button
-                type="button"
-                className="btn btn-secondary ms-3"
-                onClick={() => setEditing(null)}
-              >
-                ❌ Cancel
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
       )}
+      {/* ============== MODAL END ============== */}
     </div>
   );
 }
