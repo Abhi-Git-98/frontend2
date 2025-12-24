@@ -121,7 +121,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 📰 News ticker — navbar च्या लगेच खाली */}
+      {/* 📰 News ticker*/}
    
     </>
   );
