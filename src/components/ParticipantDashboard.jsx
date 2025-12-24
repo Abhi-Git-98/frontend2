@@ -63,6 +63,9 @@ export default function Dashboard() {
           <p>
             <b>Payment Status:</b> {data.paymentStatus==="confirmed"? "Your Payment is Confirmed" : "Your Payment is Confirmed"}
           </p>
+                    <p>
+            <b>Accommodation Status:</b> {data.accommodationStatus==="confirmed"? "Your Accommodation is Confirmed" : "Pending"}
+          </p>
 
           <button
             className="btn-logout"
