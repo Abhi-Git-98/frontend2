@@ -50,7 +50,7 @@ export default function NewsTicker() {
       {show && (
         <div className="news-ticker" ref={tickerRef}>
             <div className="news-ticker-track">
-                <span>🔴Poster presentation abstract submission last date is 31<sup>st</sup> December 2025 🔴 Registrations are open 🔴 Accomodation details will be updated soon 🔴  </span>
+                <span ref={textRef}>🔴Poster presentation abstract submission last date is 31<sup>st</sup> December 2025 🔴 Registrations are open 🔴 Accomodation details will be updated soon 🔴  </span>
             </div>
         </div>
       )}
