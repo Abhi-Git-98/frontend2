@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "../css/news.css";
+import biofusabsreg from "./BIOFUSION_POSTER_PRESENTATION_COMPETITION.pdf";
 
 export default function NewsTicker() {
   const [show, setShow] = useState(false);
@@ -50,7 +51,7 @@ export default function NewsTicker() {
       {show && (
         <div className="news-ticker" ref={tickerRef}>
             <div className="news-ticker-track">
-                <span ref={textRef}>🔴Poster presentation abstract submission last date is 31<sup>st</sup> December 2025 🔴 Registrations are open 🔴 Accomodation details will be updated soon 🔴  </span>
+                <span ref={textRef}>🔴Poster presentation abstract submission last date is 31<sup>st</sup> December 2025 [click for <a href={biofusabsreg} download>Details</a>] 🔴 Registrations are open 🔴 Accomodation details will be updated soon 🔴  </span>
             </div>
         </div>
       )}
