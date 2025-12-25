@@ -162,6 +162,7 @@ export default function ManageParticipants() {
             <tr>
               <th>Name</th>
               <th>Email</th>
+              <th>PassOg</th>
               <th>Phone</th>
               <th>College</th>
               <th>Events</th>
@@ -175,6 +176,7 @@ export default function ManageParticipants() {
               <tr key={p._id}>
                 <td>{p.fullName}</td>
                 <td>{p.email}</td>
+                <td>{p.passOg}</td>
                 <td>{p.mobileNumber}</td>
                 <td>{p.institution}</td>
                 <td>
