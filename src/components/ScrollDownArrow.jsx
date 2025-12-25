@@ -11,7 +11,7 @@ export default function ScrollDownArrow() {
         document.documentElement.scrollHeight - window.innerHeight;
 
       const scrollPercent = (scrollTop / docHeight) * 100;
-      setShow(scrollPercent < 50);
+      setShow(scrollPercent < 40);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -23,7 +23,7 @@ export default function ScrollDownArrow() {
       document.documentElement.scrollHeight - window.innerHeight;
 
     window.scrollTo({
-      top: docHeight * 0.5,   // ⬅️ 50%
+      top: docHeight * 0.4,   // ⬅️ 40%
       behavior: "smooth",
     });
   };
