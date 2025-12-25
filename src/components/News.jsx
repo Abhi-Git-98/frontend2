@@ -53,12 +53,12 @@ export default function NewsTicker() {
   return (
     <>
       {show && (
-        <div className="news-ticker" ref={tickerRef}>
+        <div className="news-ticker" ref={tickerRef}
+          onMouseEnter = {() => (pausedRef.current = true)}
+          onMouseLeave = {() => (pausedRef.current = false)}
+          >
             <div className="news-ticker-track">
-                <span ref={textRef}
-                  onMouseEnter = {() => (pausedRef.current = true)}
-                  onMouseLeave = {() => (pausedRef.current = false)}
-                  >🔴Poster presentation abstract submission last date is 31<sup>st</sup> December 2025 [click for <a href={biofusabsreg} download>Details</a>] 🔴 Registrations are open 🔴 Accomodation for outstation students are full 🔴  </span>
+                <span ref={textRef}>🔴Poster presentation abstract submission last date is 31<sup>st</sup> December 2025 [click for <a href={biofusabsreg} download>Details</a>] 🔴 Registrations are open 🔴 Accomodation for outstation students are full 🔴  </span>
             </div>
         </div>
       )}
