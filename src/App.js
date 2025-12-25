@@ -15,7 +15,7 @@ import Login from "./components/Login";
 import ParticipantDashboard from "./components/ParticipantDashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import News from "./components/News";
-import ScrollDownArrow from "./components/ScrollDownArrow;
+import ScrollDownArrow from "./components/ScrollDownArrow";
 
 // ⚙️ Admin components
 import AdminLogin from "./components/AdminLogin";
@@ -35,12 +35,12 @@ export default function App() {
         <>
           <Navbar />
           <News />
-    <ScrollDownArrow />
+          <ScrollDownArrow />
           <Routes>
             <Route path="/admin-register" element={<AdminRegister />} />
             <Route path="/" element={<About />} />
             <Route path="/Events" element={<Events />} />
-            <Route path="/participants" element={<Form/>} />} />
+            <Route path="/participants" element={<Form />} />} />
             {/* <Route path="/students" element={<Students />} /> */}
             <Route path="/guests" element={<Guests />} />
             <Route path="/coordinators" element={<Coordinators />} />
@@ -48,18 +48,17 @@ export default function App() {
               path="/admin"
               element={<AdminLogin onLogin={setIsAdminLoggedIn} />}
             />
-            
-        <Route path="/login" element={<Login />} />
-        <Route 
-          path="/dashboard" 
-          element={
-            <PrivateRoute>
-              <ParticipantDashboard />
-            </PrivateRoute>
-          } 
-        />
-        <Route path="*" element={<Login />} /> {/* unknown path redirect to login */}
-      
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <ParticipantDashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route path="*" element={<Login />} />{" "}
+            {/* unknown path redirect to login */}
           </Routes>
           <Footer />
         </>
@@ -67,5 +66,3 @@ export default function App() {
     </HashRouter>
   );
 }
-
-
