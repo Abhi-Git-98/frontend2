@@ -40,7 +40,7 @@ export default function App() {
             <Route path="/admin-register" element={<AdminRegister />} />
             <Route path="/" element={<About />} />
             <Route path="/Events" element={<Events />} />
-            <Route path="/participants" element={<Form />} />} />
+            <Route path="/participants" element={<Form />} />
             {/* <Route path="/students" element={<Students />} /> */}
             <Route path="/guests" element={<Guests />} />
             <Route path="/coordinators" element={<Coordinators />} />
