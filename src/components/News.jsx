@@ -6,6 +6,7 @@ export default function NewsTicker() {
   const [show, setShow] = useState(false);
   const textRef = useRef(null);
   const tickerRef = useRef(null);
+  const pausedRef = useRef(false);
 
   useEffect(() => {
     const navbarHeight = 60;
@@ -30,9 +31,12 @@ export default function NewsTicker() {
     let animationFrame;
 
     const loop = () => {
-      pos -= 1; // ⭐ speed — 1 normal, 0.5 slow, 2 fast
+      if(!pausedRef.current) {
+        pos -= 1.7; // ⭐ speed — 1 normal, 0.5 slow, 2 fast
 
       text.style.transform = `translateX(${pos}px)`;
+      }
+      
 
       if (pos <= -text.offsetWidth) {
         pos = ticker.offsetWidth; // ⭐ ZERO-GAP reset
@@ -51,7 +55,10 @@ export default function NewsTicker() {
       {show && (
         <div className="news-ticker" ref={tickerRef}>
             <div className="news-ticker-track">
-                <span ref={textRef}>🔴Poster presentation abstract submission last date is 31<sup>st</sup> December 2025 [click for <a href={biofusabsreg} download>Details</a>] 🔴 Registrations are open 🔴 Accomodation for outstation students are full 🔴  </span>
+                <span ref={textRef}
+                  onMouseEnter = {() => (pausedRef.current = true)}
+                  onMouseLeave = {() => (pausedRef.current = false)}
+                  >🔴Poster presentation abstract submission last date is 31<sup>st</sup> December 2025 [click for <a href={biofusabsreg} download>Details</a>] 🔴 Registrations are open 🔴 Accomodation for outstation students are full 🔴  </span>
             </div>
         </div>
       )}
