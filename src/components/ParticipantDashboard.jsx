@@ -5,6 +5,7 @@ import "../css/dashboard.css";
 
 export default function Dashboard() {
   const [data, setData] = useState(null);
+  const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +18,9 @@ export default function Dashboard() {
     API.get("/participants/dashboard", {
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then((res) => setData(res.data))
+      .then((res) => {
+        setData(res.data);
+      })
       .catch(() => {
         localStorage.removeItem("token");
         navigate("/login", { replace: true });
@@ -47,6 +50,10 @@ export default function Dashboard() {
   };
 
   if (!data) return <div className="loader-screen">Loading... ⏳</div>;
+
+  const posterEvent = data?.events?.some(
+    (e) => e.participated === true && e._id === "6948ea2fcd539f8680b658b9"
+  );
 
   return (
     <div className="dashboard-bg">
@@ -89,6 +96,16 @@ export default function Dashboard() {
             </p>
           )}
 
+          {posterEvent && (
+            <div className="mt-4">
+              <button
+                className="btn-participate btn-poster-form"
+                onClick={() => setShowForm(true)}
+              >
+                Poster Abstract Submission 📝
+              </button>
+            </div>
+          )}
           <button
             className="btn-logout"
             onClick={() => {
@@ -140,6 +157,34 @@ export default function Dashboard() {
             </div>
           ))}
         </div>
+        {showForm && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <button
+                className="modal-close"
+                onClick={() => setShowForm(false)}
+              >
+                ✖
+              </button>
+
+              <h3 style={{ marginBottom: "10px" }}>
+                Poster Presentation – Google Form
+              </h3>
+
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLScfN4d6qEHs97fecPi9Cn4G5bkZ6ymgr6jHd1CLcVm382tMHQ/viewform?embedded=true"
+                width="100%"
+                height="520"
+                frameBorder="0"
+                marginHeight="0"
+                marginWidth="0"
+                title="Poster Form"
+              >
+                Loading…
+              </iframe>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

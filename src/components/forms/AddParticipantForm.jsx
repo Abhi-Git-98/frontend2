@@ -20,6 +20,7 @@ export default function ManageParticipants() {
     try {
       const res = await API.get("/participants");
       setParticipants(res.data);
+      console.log("EVENTS ARRAY 👉", res.data.events);
     } catch {
       alert("Participants fetch failed 😵");
     }
