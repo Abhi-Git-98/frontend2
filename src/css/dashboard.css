@@ -201,3 +201,24 @@
     font-size: 0.85rem;
   }
 }
+
+.table-scroll-wrapper {
+  width: 100%;
+  overflow-x: scroll;      /* always show */
+  overflow-y: visible;
+  white-space: nowrap;
+}
+
+/* scrollbar always visible & clean */
+.table-scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-track {
+  background: #eee;
+}

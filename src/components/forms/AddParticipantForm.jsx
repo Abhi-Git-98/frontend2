@@ -72,7 +72,8 @@ export default function ManageParticipants() {
       p.fullName?.toLowerCase().includes(search.toLowerCase()) ||
       p.email?.toLowerCase().includes(search.toLowerCase()) ||
       p.mobileNumber?.includes(search) ||
-      p.institution?.toLowerCase().includes(search.toLowerCase());
+      p.institution?.toLowerCase().includes(search.toLowerCase()) ||
+      p.registration_id?.toLowerCase().includes(search.toLowerCase());
 
     const accommodationMatch = filterAccommodation
       ? p.accommodationStatus === filterAccommodation
@@ -156,10 +157,12 @@ export default function ManageParticipants() {
       </div>
 
       {/* TABLE */}
-      <div className="table-responsive">
+      <div className="table-scroll-wrappe">
         <table className="table table-striped table-hover shadow-sm">
           <thead className="table-dark">
             <tr>
+              <th>#</th>
+              <th>Gen Id</th>
               <th>Name</th>
               <th>Email</th>
               <th>PassOg</th>
@@ -172,8 +175,10 @@ export default function ManageParticipants() {
           </thead>
 
           <tbody>
-            {filteredParticipants.map((p) => (
+            {filteredParticipants.map((p, index) => (
               <tr key={p._id}>
+                <td>{index + 1}</td>
+                <td>{p.registration_id}</td>
                 <td>{p.fullName}</td>
                 <td>{p.email}</td>
                 <td>{p.passOg}</td>
