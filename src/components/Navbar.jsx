@@ -15,9 +15,7 @@ export default function Navbar() {
       setScrolled(scrollY > 10);
 
       if (hero) {
-        hero.style.opacity = scrollY > 0
-          ? 1 - Math.min(scrollY / 50, 1)
-          : 1;
+        hero.style.opacity = scrollY > 0 ? 1 - Math.min(scrollY / 50, 1) : 1;
       }
     };
 
@@ -116,13 +114,18 @@ export default function Navbar() {
                   Join Us
                 </Link>
               </li>
+              {/* <li className="nav-item ms-lg-3">
+                <Link className="login-btn" to="/login">
+                  <span>Login</span>
+                  <i>→</i>
+                </Link>
+              </li> */}
             </ul>
           </div>
         </div>
       </nav>
 
       {/* 📰 News ticker*/}
-   
     </>
   );
 }

@@ -182,3 +182,23 @@
   50% { transform: translate(-50%, -12px); }
   100% { transform: translate(-50%, 0); }
 }
+
+
+.login-btn {
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  transform: translateY(-2px);
+}

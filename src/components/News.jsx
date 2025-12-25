@@ -31,12 +31,11 @@ export default function NewsTicker() {
     let animationFrame;
 
     const loop = () => {
-      if(!pausedRef.current) {
+      if (!pausedRef.current) {
         pos -= 1.7; // ⭐ speed — 1 normal, 0.5 slow, 2 fast
 
-      text.style.transform = `translateX(${pos}px)`;
+        text.style.transform = `translateX(${pos}px)`;
       }
-      
 
       if (pos <= -text.offsetWidth) {
         pos = ticker.offsetWidth; // ⭐ ZERO-GAP reset
@@ -53,16 +52,26 @@ export default function NewsTicker() {
   return (
     <>
       {show && (
-        <div className="news-ticker" ref={tickerRef}
-          onMouseEnter = {() => (pausedRef.current = true)}
-          onMouseLeave = {() => (pausedRef.current = false)}
-          >
-            <div className="news-ticker-track">
-                <span ref={textRef}>🔴Poster presentation abstract submission last date is 31<sup>st</sup> December 2025 [click for <a href={biofusabsreg} download>Details</a>] 🔴 Registrations are open 🔴 Accomodation for outstation students are full 🔴  </span>
-            </div>
+        <div
+          className="news-ticker"
+          ref={tickerRef}
+          onMouseEnter={() => (pausedRef.current = true)}
+          onMouseLeave={() => (pausedRef.current = false)}
+        >
+          <div className="news-ticker-track">
+            <span ref={textRef}>
+              🔴Poster presentation abstract submission last date is 31
+              <sup>st</sup> December 2025 [click for{" "}
+              <a href={biofusabsreg} download>
+                Details
+              </a>
+              ] 🔴 Registrations are open 🔴 Accomodation for outstation
+              students are full 🔴 Login link and credentials are shared on your
+              registered email{" "}
+            </span>
+          </div>
         </div>
       )}
     </>
   );
 }
-
