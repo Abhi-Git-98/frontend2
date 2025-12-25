@@ -72,7 +72,7 @@ export default function Dashboard() {
               ? "Your Accommodation is Confirmed"
               : "Pending"}
           </p>
-          {data.accommodationStatus?.trim().toLowerCase() === "confirmed" && (
+          {data.accommodationStatus === "confirmed" && (
             <p>
               <b>Join Whatsapp Group:</b>{" "}
               <a
