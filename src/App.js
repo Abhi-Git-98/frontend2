@@ -15,6 +15,7 @@ import Login from "./components/Login";
 import ParticipantDashboard from "./components/ParticipantDashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import News from "./components/News";
+import ScrollDownArrow from "./components/ScrollDownArrow;
 
 // ⚙️ Admin components
 import AdminLogin from "./components/AdminLogin";
@@ -34,6 +35,7 @@ export default function App() {
         <>
           <Navbar />
           <News />
+          <ScrollDownArrow />
           <Routes>
             <Route path="/admin-register" element={<AdminRegister />} />
             <Route path="/" element={<About />} />
