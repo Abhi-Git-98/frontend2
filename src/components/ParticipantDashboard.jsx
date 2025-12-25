@@ -38,9 +38,7 @@ export default function Dashboard() {
       setData((prev) => ({
         ...prev,
         events: prev.events.map((e) =>
-          e._id === eventId
-            ? { ...e, participated: !participated }
-            : e
+          e._id === eventId ? { ...e, participated: !participated } : e
         ),
       }));
     } catch {
@@ -48,24 +46,45 @@ export default function Dashboard() {
     }
   };
 
-  if (!data)
-    return <div className="loader-screen">Loading... ⏳</div>;
+  if (!data) return <div className="loader-screen">Loading... ⏳</div>;
 
   return (
     <div className="dashboard-bg">
       <div className="container">
-
         {/* ================= PROFILE ================= */}
         <div className="profile-card">
           <h2>Welcome, {data.fullName} </h2>
-          <p><b>Email:</b> {data.email}</p>
-          <p><b>Group:</b> {data.groupKeyword || "Individual"}</p>
           <p>
-            <b>Payment Status:</b> {data.paymentStatus==="confirmed"? "Your Payment is Confirmed" : "Your Payment is Confirmed"}
+            <b>Email:</b> {data.email}
           </p>
-                    <p>
-            <b>Accommodation Status:</b> {data.accommodationStatus==="confirmed"? "Your Accommodation is Confirmed" : "Pending"}
+          <p>
+            <b>Group:</b> {data.groupKeyword || "Individual"}
           </p>
+          <p>
+            <b>Payment Status:</b>{" "}
+            {data.paymentStatus === "confirmed"
+              ? "Your Payment is Confirmed"
+              : "Your Payment is Confirmed"}
+          </p>
+          <p>
+            <b>Accommodation Status:</b>{" "}
+            {data.accommodationStatus === "confirmed"
+              ? "Your Accommodation is Confirmed"
+              : "Pending"}
+          </p>
+          {data.accommodationStatus === "confirmed" && (
+            <p>
+              <b>Join Whatsapp Group:</b>{" "}
+              <a
+                href="https://chat.whatsapp.com/Dg8JC3QJVpOJahUolNwedq"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 underline"
+              >
+                Click here to join
+              </a>
+            </p>
+          )}
 
           <button
             className="btn-logout"
@@ -85,7 +104,10 @@ export default function Dashboard() {
           {data.events.map((event) => (
             <div key={event._id} className="event-card">
               <img
-                src={`https://genvision-26.onrender.com/${event.image.replace(/^\/+/, "")}`}
+                src={`https://genvision-26.onrender.com/${event.image.replace(
+                  /^\/+/,
+                  ""
+                )}`}
                 alt={event.title}
                 className="event-image"
               />
@@ -94,7 +116,9 @@ export default function Dashboard() {
                 <h4>{event.title}</h4>
 
                 <button
-                  className={`btn-action ${event.participated ? "btn-cancel" : "btn-participate"}`}
+                  className={`btn-action ${
+                    event.participated ? "btn-cancel" : "btn-participate"
+                  }`}
                   onClick={() =>
                     toggleParticipation(event._id, event.participated)
                   }
@@ -107,14 +131,12 @@ export default function Dashboard() {
                     ? "Cancel Participation ❌"
                     : event.currentParticipants >= event.maxParticipants
                     ? "Event Full 🚫"
-                    : "Participate 🚀"
-                  }
+                    : "Participate 🚀"}
                 </button>
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </div>
   );
