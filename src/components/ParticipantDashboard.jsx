@@ -58,6 +58,9 @@ export default function Dashboard() {
             <b>Email:</b> {data.email}
           </p>
           <p>
+            <b>Genvision Id:</b> {data.registration_id}
+          </p>
+          <p>
             <b>Group:</b> {data.groupKeyword || "Individual"}
           </p>
           <p>
