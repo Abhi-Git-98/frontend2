@@ -35,7 +35,7 @@ export default function App() {
         <>
           <Navbar />
           <News />
-          <ScrollDownArrow />
+    <ScrollDownArrow />
           <Routes>
             <Route path="/admin-register" element={<AdminRegister />} />
             <Route path="/" element={<About />} />
