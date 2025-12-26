@@ -84,6 +84,30 @@
   object-fit: cover;
 }
 
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Optional: popup overlay for better focus */
+.event-popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3); /* dim background */
+  z-index: 5;
+  border-radius: 12px;
+}
+
+/* Hover वर rules popup show */
+.event-card:hover .event-rules-hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
 /* Body */
 .event-body {
   padding: 16px;
@@ -297,4 +321,191 @@
   .modal-box iframe {
     height: 80vh;
   }
+}
+
+/* ================= RULES FLOAT CARD ================= */
+
+.event-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* rules container */
+.event-rules {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+
+  color: #fff;
+  padding: 12px 14px;
+  border-radius: 12px;
+
+  font-size: 13px;
+  z-index: 5;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+/* hover वर rules दिसतील */
+.event-card:hover .event-rules {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* rules title */
+.rules-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #ffd700;
+}
+
+/* rules list */
+.event-rules ul {
+  padding-left: 14px;
+  margin: 0;
+}
+
+.event-rules li {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+/* ================= FORCE FIX ================= */
+
+/* event card base */
+.event-card {
+  position: relative;
+}
+
+/* image ला खाली ढकल */
+.event-image {
+  position: relative;
+  z-index: 1;
+}
+
+/* rules ला वर उचल */
+.event-rules {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+
+  padding: 12px;
+  border-radius: 10px;
+
+  font-size: 13px;
+  z-index: 9999; /* 🔥 MAIN FIX */
+
+  pointer-events: none; /* image clicks block होणार नाहीत */
+}
+
+/* title */
+.rules-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #ffd700;
+}
+
+/* list */
+/* ===== Image ===== */
+.event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+/* ===== Event Body ===== */
+.event-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.event-body h4 {
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: white;
+}
+
+/* ===== Buttons ===== */
+.btn-action {
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+}
+
+.btn-participate {
+  background: linear-gradient(135deg, #4f46e5, #9333ea);
+}
+
+.btn-participate:hover {
+  background: linear-gradient(135deg, #9333ea, #ec4899);
+}
+
+.btn-cancel {
+  background: #22c55e;
+}
+
+.btn-cancel:hover {
+  background: #16a34a;
+}
+
+/* ===== Hover Rules Popup ===== */
+.event-rules {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 250px;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  z-index: 999;
+  pointer-events: none; /* image clicks block होणार नाहीत */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+}
+
+.event-card:hover .event-rules {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Rules Title */
+.rules-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #ffd700;
+}
+
+/* Rules List */
+.event-rules ul {
+  margin: 0;
+  padding-left: 14px;
+}
+
+.event-rules li {
+  margin-bottom: 4px;
+  line-height: 1.4;
 }

@@ -9,6 +9,7 @@ export default function ManageEvents() {
     time: "",
     venue: "",
     maxParticipants: "",
+    rules: [], // 🔥 RULES
   });
 
   const [imageFile, setImageFile] = useState(null);
@@ -30,29 +31,25 @@ export default function ManageEvents() {
         setSelectedEventId(res.data[0]._id);
       }
     } catch (err) {
-      console.error("Fetch events error:", err);
+      console.error(err);
     }
   };
 
   /* ================= FETCH PARTICIPANTS ================= */
-  const fetchParticipants = async (eventId) => {
-    try {
-      const res = await API.get(`/events/${eventId}/participants`);
-      const data = Array.isArray(res.data)
-        ? res.data
-        : res.data.participants || [];
-      setParticipants(data);
-    } catch (err) {
-      console.error("Fetch participants error:", err);
-      setParticipants([]);
-    }
-  };
-
   useEffect(() => {
     if (selectedEventId) fetchParticipants(selectedEventId);
   }, [selectedEventId]);
 
-  /* ================= FORM HANDLERS ================= */
+  const fetchParticipants = async (eventId) => {
+    try {
+      const res = await API.get(`/events/${eventId}/participants`);
+      setParticipants(res.data || []);
+    } catch {
+      setParticipants([]);
+    }
+  };
+
+  /* ================= HANDLERS ================= */
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -62,20 +59,22 @@ export default function ManageEvents() {
     e.preventDefault();
 
     const formData = new FormData();
+
     Object.keys(form).forEach((key) => {
-      formData.append(key, form[key]);
+      if (key === "rules") {
+        form.rules.forEach((r) => formData.append("rules[]", r));
+      } else {
+        formData.append(key, form[key]);
+      }
     });
+
     if (imageFile) formData.append("image", imageFile);
 
     try {
       if (editingId) {
-        await API.put(`/events/${editingId}`, formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        await API.put(`/events/${editingId}`, formData);
       } else {
-        await API.post("/events", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        await API.post("/events", formData);
       }
 
       setForm({
@@ -85,29 +84,25 @@ export default function ManageEvents() {
         time: "",
         venue: "",
         maxParticipants: "",
+        rules: [],
       });
+
       setImageFile(null);
       setEditingId(null);
-
-      fetchEvents();
-    } catch (err) {
-      console.error(err);
-      alert("❌ Event add/update failed");
-    }
-  };
-
-  /* ================= DELETE EVENT ================= */
-  const handleDelete = async (id) => {
-    if (!window.confirm("Delete this event?")) return;
-    try {
-      await API.delete(`/events/${id}`);
       fetchEvents();
     } catch {
-      alert("❌ Delete failed");
+      alert("❌ Event save failed");
     }
   };
 
-  /* ================= EDIT EVENT ================= */
+  /* ================= DELETE ================= */
+  const handleDelete = async (id) => {
+    if (!window.confirm("Delete this event?")) return;
+    await API.delete(`/events/${id}`);
+    fetchEvents();
+  };
+
+  /* ================= EDIT ================= */
   const handleEdit = (event) => {
     setForm({
       name: event.name || "",
@@ -116,6 +111,7 @@ export default function ManageEvents() {
       time: event.time || "",
       venue: event.venue || "",
       maxParticipants: event.maxParticipants || "",
+      rules: event.rules || [],
     });
     setEditingId(event._id);
     setImageFile(null);
@@ -124,7 +120,7 @@ export default function ManageEvents() {
   /* ================= UI ================= */
   return (
     <div className="container my-4">
-      <h2 className="fw-bold mb-4">Manage Events & Participants</h2>
+      <h2 className="fw-bold mb-4">Manage Events</h2>
 
       {/* ================= EVENT FORM ================= */}
       <form
@@ -145,7 +141,7 @@ export default function ManageEvents() {
           value={form.description}
           onChange={handleChange}
           placeholder="Event Description"
-          className="col-md-6 p-3 border rounded"
+          className="col-md-6 p-2 border rounded"
         />
 
         <input
@@ -172,10 +168,8 @@ export default function ManageEvents() {
           onChange={handleChange}
           placeholder="Venue"
           className="col-md-6 p-2 border rounded"
-          required
         />
 
-        {/* 🔥 MAX PARTICIPANTS */}
         <input
           type="number"
           name="maxParticipants"
@@ -183,68 +177,86 @@ export default function ManageEvents() {
           onChange={handleChange}
           placeholder="Max Participants"
           className="col-md-6 p-2 border rounded"
-          min="1"
           required
         />
 
+        {/* ================= RULES ================= */}
+        <div className="col-md-6 w-100">
+          <h6 className="fw-bold">Event Rules</h6>
+
+          {form.rules.map((rule, i) => (
+            <div key={i} className="d-flex gap-2 mb-2">
+              <input
+                className="form-control"
+                placeholder={`Rule ${i + 1}`}
+                value={rule}
+                onChange={(e) => {
+                  const updated = [...form.rules];
+                  updated[i] = e.target.value;
+                  setForm({ ...form, rules: updated });
+                }}
+              />
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() =>
+                  setForm({
+                    ...form,
+                    rules: form.rules.filter((_, idx) => idx !== i),
+                  })
+                }
+              >
+                ❌
+              </button>
+            </div>
+          ))}
+
+          <button
+            type="button"
+            className="btn btn-secondary btn-sm"
+            onClick={() => setForm({ ...form, rules: [...form.rules, ""] })}
+          >
+            ➕ Add Rule
+          </button>
+        </div>
+
         <button
           type="submit"
-          className={`px-4 py-2 rounded text-white ${
-            editingId ? "bg-warning" : "bg-primary"
-          }`}
+          className={`btn ${editingId ? "btn-warning" : "btn-primary"}`}
         >
           {editingId ? "Update Event" : "Add Event"}
         </button>
       </form>
 
       {/* ================= EVENTS GRID ================= */}
-      <div className="row mb-4">
+      <div className="row">
         {events.map((ev) => (
-          <div key={ev._id} className="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
-            <div
-              className={`card h-100 text-center ${
-                selectedEventId === ev._id
-                  ? "border border-primary border-2"
-                  : ""
-              }`}
-            >
-              {ev.image && (
-                <img
-                  src={`https://genvision-26.onrender.com/${ev.image.replace(
-                    /^\/+/,
-                    ""
-                  )}`}
-                  alt={ev.name}
-                  className="card-img-top"
-                  style={{ height: "140px", objectFit: "cover" }}
-                />
-              )}
-
-              <div className="card-body p-2">
+          <div key={ev._id} className="col-md-3 mb-3">
+            <div className="card text-center h-100">
+              <div className="card-body">
                 <h6>{ev.name}</h6>
-
-                <p className="small text-muted mb-1">
-                  👥 {ev.currentParticipants || 0} / {ev.maxParticipants}
+                <p className="small">
+                  👥 {ev.currentParticipants || 0}/{ev.maxParticipants}
                 </p>
 
-                <div className="d-flex justify-content-center gap-2 mb-2">
+                <div className="d-flex justify-content-center gap-2">
                   <button
+                    className="btn btn-warning btn-sm"
                     onClick={() => handleEdit(ev)}
-                    className="btn btn-sm btn-warning"
                   >
                     ✏️
                   </button>
                   <button
+                    className="btn btn-danger btn-sm"
                     onClick={() => handleDelete(ev._id)}
-                    className="btn btn-sm btn-danger"
                   >
                     🗑️
                   </button>
                 </div>
 
                 <button
+                  className="btn btn-info btn-sm mt-2"
                   onClick={() => setSelectedEventId(ev._id)}
-                  className="btn btn-sm btn-info"
                 >
                   Participants
                 </button>
@@ -254,44 +266,28 @@ export default function ManageEvents() {
         ))}
       </div>
 
-      {/* ================= PARTICIPANTS TABLE ================= */}
-      {selectedEventId && (
-        <div className="mt-4">
-          <h4>Participants</h4>
-
-          {participants.length === 0 ? (
-            <div className="text-muted">No participants yet.</div>
-          ) : (
-            <div className="table-responsive">
-              <table className="table table-striped table-hover">
-                <thead className="table-dark">
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>College</th>
-                    <th>Payment</th>
-                    <th>Accommodation</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {participants.map((p, idx) => (
-                    <tr key={p._id}>
-                      <td>{idx + 1}</td>
-                      <td>{p.fullName}</td>
-                      <td>{p.email}</td>
-                      <td>{p.mobileNumber || "-"}</td>
-                      <td>{p.institution || "-"}</td>
-                      <td>{p.paymentStatus || "pending"}</td>
-                      <td>{p.accommodationStatus || "pending"}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
+      {/* ================= PARTICIPANTS ================= */}
+      {participants.length > 0 && (
+        <table className="table table-striped mt-4">
+          <thead className="table-dark">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>College</th>
+            </tr>
+          </thead>
+          <tbody>
+            {participants.map((p, i) => (
+              <tr key={p._id}>
+                <td>{i + 1}</td>
+                <td>{p.fullName}</td>
+                <td>{p.email}</td>
+                <td>{p.institution || "-"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

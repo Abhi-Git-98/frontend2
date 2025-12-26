@@ -132,6 +132,18 @@ export default function Dashboard() {
                 className="event-image"
               />
 
+              {/* ================= HOVER RULES ================= */}
+              {event.rules && event.rules.length > 0 && (
+                <div className="event-rules">
+                  <div className="rules-title">Event Rules 📜</div>
+                  <ul>
+                    {event.rules.map((rule, idx) => (
+                      <li key={idx}>{rule}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               <div className="event-body">
                 <h4>{event.title}</h4>
 
@@ -157,6 +169,7 @@ export default function Dashboard() {
             </div>
           ))}
         </div>
+
         {showForm && (
           <div className="modal-overlay">
             <div className="modal-box">
