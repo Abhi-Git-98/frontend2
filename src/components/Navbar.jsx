@@ -114,12 +114,12 @@ export default function Navbar() {
                   Join Us
                 </Link>
               </li>
-              {/* <li className="nav-item ms-lg-3">
+              <li className="nav-item ms-lg-3">
                 <Link className="login-btn" to="/login">
                   <span>Login</span>
                   <i>→</i>
                 </Link>
-              </li> */}
+              </li>
             </ul>
           </div>
         </div>

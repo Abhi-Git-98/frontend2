@@ -185,20 +185,51 @@
 
 
 .login-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
   padding: 10px 22px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.35)
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #000;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  text-decoration: none;
+
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Arrow animation */
+.login-btn i {
+  font-style: normal;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Hover magic ✨ */
 .login-btn:hover {
-  background: rgba(0, 0, 0, 0.85);
+  background: linear-gradient(135deg, #000, #1f2933);
   color: #fff;
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.login-btn:hover i {
+  transform: translateX(6px);
+}
+
+/* Click feel */
+.login-btn:active {
+  transform: scale(0.97);
 }
