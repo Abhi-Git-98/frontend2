@@ -66,8 +66,8 @@ export default function NewsTicker() {
                 Details
               </a>
               ] 🔴 Registrations are open 🔴 Accomodation for outstation
-              students are full 🔴 Login link and credentials are shared on your
-              registered email{" "}
+              students are full 🔴 After payment verification login link and
+              credentials will be shared on your registered email.{" "}
             </span>
           </div>
         </div>
