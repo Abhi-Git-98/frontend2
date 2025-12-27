@@ -51,7 +51,7 @@ export default function Events() {
       <div className="event-contact-container mt-5">
         <h2 className="event-contact-title">Event Related Queries?</h2>
 
-        <p className="event-contact-sub">Don’t overthink.</p>
+        <p className="event-contact-sub">Don’t Overthink.</p>
 
         <div className="event-contact-cards">
           <div className="event-contact-card">
