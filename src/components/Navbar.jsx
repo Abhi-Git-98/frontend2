@@ -102,8 +102,8 @@ export default function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-black" to="/Guests">
-                  Guests
+                <Link className="nav-link text-black" to="/Speakers">
+                  Speakers
                 </Link>
               </li>
               <li className="nav-item ms-lg-3">

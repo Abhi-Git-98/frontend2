@@ -42,7 +42,7 @@ export default function App() {
             <Route path="/Events" element={<Events />} />
             <Route path="/participants" element={<Form />} />
             {/* <Route path="/students" element={<Students />} /> */}
-            <Route path="/guests" element={<Guests />} />
+            <Route path="/speakers" element={<Guests />} />
             <Route path="/coordinators" element={<Coordinators />} />
             <Route
               path="/admin"
