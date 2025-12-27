@@ -17,7 +17,7 @@ export default function Events() {
         className="text-3xl font-bold mb-4 text-white"
         style={{ textAlign: "center" }}
       >
-        Events
+        GenVision Events
       </h1>
 
       <div className="d-flex flex-wrap justify-content-center gap-4">
@@ -43,26 +43,6 @@ export default function Events() {
             </div>
           </div>
         ))}
-      </div>
-      {/* ================= Event Queries Contact ================= */}
-      <div className="event-contact-container mt-5">
-        <h2 className="event-contact-title">Event Related Queries?</h2>
-
-        <p className="event-contact-sub">Don’t overthink.</p>
-
-        <div className="event-contact-cards">
-          <div className="event-contact-card">
-            <span className="role">Event Head</span>
-            <h3>Aditi</h3>
-            <a href="tel:+918447551284">📞 +91 84475 51284</a>
-          </div>
-
-          <div className="event-contact-card">
-            <span className="role">Event Head</span>
-            <h3>Alankar</h3>
-            <a href="tel:+919748948858">📞 +91 97489 48858</a>
-          </div>
-        </div>
       </div>
     </div>
   );
