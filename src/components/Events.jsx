@@ -27,17 +27,17 @@ export default function Events() {
               key={g._id}
               className="col-6 col-md-4 col-lg-3 mb-4 d-flex justify-content-center"
             >
-              <div className="guest-card w-100">
-                <div className="guest-img-wrapper">
+              <div className="event-card w-100">
+                <div className="event-img-wrapper">
                   <img
                     src={`https://genvision-26.onrender.com${
                       g.image.startsWith("/") ? g.image : "/" + g.image
                     }`}
                     alt={g.name}
                     className="card-img-top"
-                    style={{ height: "280px", objectFit: "cover" }}
+                    // style={{ height: "280px", objectFit: "cover" }}
                   />
-                  <div className="guest-overlay">
+                  <div className="event-overlay">
                     <h4>{g.name}</h4>
                     <p className="desc">{g.description}</p>
                   </div>

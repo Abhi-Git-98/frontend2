@@ -3,7 +3,7 @@ import API from "../api";
 import { Carousel } from "react-bootstrap";
 import "../css/about.css";
 import "../css/guests.css";
-import "../css/events.css";
+// import "../css/events.css";
 
 import { aboutFallback } from "../fallback/aboutFallback";
 import { eventsFallback } from "../fallback/eventsFallback";
