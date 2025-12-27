@@ -285,7 +285,7 @@ export default function AboutPage() {
             {events.map((g) => (
               <div
                 key={g._id}
-                className="col-md-4 col-lg-3 mb-4 d-flex justify-content-center"
+                className="col-6 col-md-4 col-lg-3 mb-4 d-flex justify-content-center"
               >
                 <div className="event-card w-100">
                   <div className="event-img-wrapper">
