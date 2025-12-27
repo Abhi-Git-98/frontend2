@@ -171,11 +171,11 @@
   }
 
    .event-img-wrapper img {
-    height: 200px;
+    height: 300px;
   }
 
   .event-overlay h4 {
-    font-size: 0.62rem;
+    font-size: 1rem;
   }
 
   .event-overlay .designation {
@@ -183,6 +183,6 @@
   }
 
   .event-overlay .desc {
-    font-size: 0.55rem;
+    font-size: 0.9rem;
   }
 }
