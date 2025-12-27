@@ -3,6 +3,7 @@ import API from "../api";
 import { Carousel } from "react-bootstrap";
 import "../css/about.css";
 import "../css/guests.css";
+import "../css/events.css";
 
 import { aboutFallback } from "../fallback/aboutFallback";
 import { eventsFallback } from "../fallback/eventsFallback";
@@ -232,72 +233,80 @@ export default function AboutPage() {
         )}
       </div>
 
-      <div className="p-5">
-        <h1 className="text-center mb-5 fw-bold text-white">Our Speakers</h1>
+      <div className="p-8">
+        <h1
+          className="text-3xl font-bold mb-4 text-white"
+          style={{ textAlign: "center" }}
+        >
+          Our Speakers
+        </h1>
 
-        {guests.length === 0 ? (
-          <h3 className="text-center mb-5 fw-bold text-white">
-            Coming Soon...
-          </h3>
-        ) : (
-          <div className="d-flex flex-wrap justify-content-center gap-4">
+        <div className="container">
+          <div className="row justify-content-center">
             {guests.map((g) => (
               <div
                 key={g._id}
-                className="guest-card margin-x"
-                style={{ marginRight: "10px", marginLeft: "10px" }}
+                className="col-6 col-md-4 col-lg-4 mb-4 d-flex justify-content-center"
               >
-                <div className="guest-img-wrapper">
-                  <img
-                    src={`https://genvision-26.onrender.com${
-                      g.image.startsWith("/") ? g.image : "/" + g.image
-                    }`}
-                    alt={g.name}
-                    className="card-img-top"
-                    style={{ height: "400px", objectFit: "cover" }}
-                  />
-                  <div className="guest-overlay">
-                    <h4>{g.name}</h4>
-                    <p className="designation">{g.designation}</p>
-                    <p className="desc">{g.description}</p>
+                <div className="guest-card w-100">
+                  <div className="guest-img-wrapper">
+                    <img
+                      src={`https://genvision-26.onrender.com${
+                        g.image.startsWith("/") ? g.image : "/" + g.image
+                      }`}
+                      alt={g.name}
+                      className="guest-img"
+                    />
+
+                    <div className="guest-overlay">
+                      <h4>{g.name}</h4>
+                      <p className="designation">{g.designation}</p>
+                      <p className="desc">{g.description}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        )}
+        </div>
       </div>
 
       {/* Events */}
-      <h1
-        className="text-3xl font-bold mb-4 text-white"
-        style={{ textAlign: "center" }}
-      >
-        Genvision Events
-      </h1>
-      <div className="d-flex flex-wrap justify-content-center gap-4">
-        {events.map((g) => (
-          <div
-            key={g._id}
-            className="guest-card margin-x"
-            style={{ marginRight: "10px", marginLeft: "10px" }}
-          >
-            <div className="guest-img-wrapper">
-              <img
-                src={`https://genvision-26.onrender.com${
-                  g.image.startsWith("/") ? g.image : "/" + g.image
-                }`}
-                alt={g.name}
-                className="card-img-top"
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-              <div className="guest-overlay">
-                <h4>{g.name}</h4>
-                <p className="desc">{g.description}</p>
+      <div className="p-8">
+        <h1
+          className="text-3xl font-bold mb-4 text-white"
+          style={{ textAlign: "center" }}
+        >
+          GenVision Events
+        </h1>
+
+        <div className="container">
+          <div className="row justify-content-center">
+            {events.map((g) => (
+              <div
+                key={g._id}
+                className="col-md-4 col-lg-3 mb-4 d-flex justify-content-center"
+              >
+                <div className="event-card w-100">
+                  <div className="event-img-wrapper">
+                    <img
+                      src={`https://genvision-26.onrender.com${
+                        g.image.startsWith("/") ? g.image : "/" + g.image
+                      }`}
+                      alt={g.name}
+                      className="card-img-top"
+                      style={{ height: "280px", objectFit: "cover" }}
+                    />
+                    <div className="event-overlay">
+                      <h4>{g.name}</h4>
+                      <p className="desc">{g.description}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
       {/* Gallery */}

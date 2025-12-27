@@ -1,0 +1,185 @@
+.event-card {
+  width: 100%;
+  height: fit-content;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+.event-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.event-img {
+  width: 100%;
+  height: fit-content;
+  object-fit: cover;
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.event-card:hover .event-img {
+  transform: scale(1.1);
+  filter: brightness(70%) blur(2px);
+}
+
+/* Overlay */
+.event-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* top se start */
+  align-items: flex-start;
+  text-align: center;
+  transition: opacity 0.5s ease;
+}
+
+.event-card:hover .event-overlay {
+  opacity: 1.4;
+}
+
+/* Text Styles */
+.event-overlay h4,
+.event-overlay .designation,
+.event-overlay .desc {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.event-card:hover .event-overlay h4,
+.event-card:hover .event-overlay .designation,
+.event-card:hover .event-overlay .desc {
+  opacity: 1; /* all text fade in simultaneously */
+}
+
+.event-overlay h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.1rem;
+  font-weight: 600;
+}
+
+.event-overlay .designation {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.event-overlay .desc {
+  font-size: 0.8rem;
+  margin-top: 0.1rem;
+  color: #f1f1f1;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+
+/* ================= Event Contact Section ================= */
+
+.event-contact-container {
+  margin-top: 60px;
+  padding: 40px 20px;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.02)
+  );
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+}
+
+.event-contact-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.event-contact-sub {
+  color: #bdbdbd;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+.event-contact-cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.event-contact-card {
+  background: rgba(255,255,255,0.1);
+  padding: 25px 30px;
+  border-radius: 16px;
+  width: 260px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+
+.event-contact-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 35px rgba(0,255,255,0.35);
+}
+
+.event-contact-card h3 {
+  color: #fff;
+  margin: 10px 0;
+}
+
+.event-contact-card .role {
+  font-size: 0.8rem;
+  color: #00f2ff;
+  letter-spacing: 1px;
+}
+
+.event-contact-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #00f2ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.event-contact-card a:hover {
+  text-decoration: underline;
+}
+
+
+/* @media (max-width: 767px) {
+  .event-card {
+    width: 90%;
+  }
+
+   .event-img-wrapper img {
+    height: 200px;
+  }
+
+  .event-overlay h4 {
+    font-size: 0.62rem;
+  }
+
+  .event-overlay .designation {
+  font-size: 0.45rem;
+  }
+
+  .event-overlay .desc {
+    font-size: 0.55rem;
+  }
+} */
