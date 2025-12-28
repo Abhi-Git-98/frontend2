@@ -139,7 +139,7 @@ export default function AboutPage() {
             >
               <p
                 style={{
-                  fontSize: "1.4rem",
+                  fontSize: "1.1rem",
                   lineHeight: "1.8",
                   color: "#333",
                   textAlign: "justify",
