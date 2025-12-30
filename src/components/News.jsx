@@ -67,7 +67,7 @@ export default function NewsTicker() {
               </a>
               ] 🔴 Registrations are open 🔴 Accomodation for outstation
               students are full 🔴 After payment verification login link and
-              credentials will be shared on your registered email.{" "}
+              credentials will be shared on your registered email. 🔴 <b>Register for Events using your email id only.</b>{" "}
             </span>
           </div>
         </div>
