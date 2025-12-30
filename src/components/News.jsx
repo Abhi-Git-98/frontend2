@@ -60,8 +60,7 @@ export default function NewsTicker() {
         >
           <div className="news-ticker-track">
             <span ref={textRef}>
-              🔴Poster presentation abstract submission last date is 31
-              <sup>st</sup> December 2025 [click for{" "}
+              🔴Poster presentation abstract submission [click for{" "}
               <a href={biofusabsreg} download>
                 Details
               </a>
