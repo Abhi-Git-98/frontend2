@@ -1,0 +1,211 @@
+/* collegeInline.css */
+
+/* Card wrapper */
+.college-inline-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: 0.3s all;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Header */
+.inline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.inline-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.edit-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.edit-btn:hover {
+  background: #0056b3;
+}
+
+/* Inline rows */
+.inline-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.inline-row label {
+  width: 120px;
+  font-weight: 600;
+  color: #555;
+}
+
+.inline-row span {
+  color: #333;
+}
+
+.inline-row input,
+.inline-row select {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+/* Sections (Contacts & Reviews) */
+.section {
+  margin-top: 15px;
+}
+
+.section label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+/* Contacts */
+.contact-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.contact-row input {
+  flex: 1;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-right: 6px;
+}
+
+.contact-row button {
+  background: #dc3545;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: 0.2s;
+}
+
+.contact-row button:hover {
+  background: #a71d2a;
+}
+
+.add-btn {
+  margin-top: 6px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.add-btn:hover {
+  background: #1e7e34;
+}
+
+/* Reviews */
+.review-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9fa;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.review-row button {
+  background: #dc3545;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+}
+
+.review-row button:hover {
+  background: #a71d2a;
+}
+
+.review-add {
+  display: flex;
+  margin-top: 6px;
+  gap: 6px;
+}
+
+.review-add input {
+  flex: 1;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.review-add button {
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.review-add button:hover {
+  background: #1e7e34;
+}
+
+/* Save button */
+.save-btn {
+  margin-top: 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.save-btn:hover {
+  background: #0056b3;
+}
+
+/* Muted text */
+.muted {
+  color: #888;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .inline-row label {
+    width: 100px;
+    font-size: 0.85rem;
+  }
+
+  .inline-row input,
+  .inline-row select {
+    font-size: 0.85rem;
+  }
+}
