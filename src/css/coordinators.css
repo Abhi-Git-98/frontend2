@@ -58,13 +58,6 @@
   font-size: 0.9rem;
 }
 
-.decor-line {
-  width: 50px;
-  height: 3px;
-  background: #00ffd5;
-  border-radius: 10px;
-  margin: 12px auto;
-}
 
 .hint {
   font-size: 0.75rem;
