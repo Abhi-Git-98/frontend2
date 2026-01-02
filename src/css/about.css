@@ -91,7 +91,7 @@
   left: 0;
   transform: rotateY(180deg);
   background-color: #fafafa;
-  padding: 20px;
+  /* padding: 20px; */
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 .flip-card-back p {

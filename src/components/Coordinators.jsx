@@ -75,9 +75,12 @@ export default function Coordinators() {
                 <div key={c._id} className={group.col}>
                   <div
                     className={`flip-card 
-                      ${flippedId === c._id ? "flipped" : ""} 
-                      ${group.title === "Organizing Committee" ? "oc-card" : ""}
-                      ${group.title === "Heads" ? "head-card" : ""}`}
+    ${flippedId === c._id ? "flipped" : ""} 
+    ${group.title === "Organizing Committee" ? "oc-card" : ""}
+    ${group.title === "Heads" ? "head-card" : ""}
+    ${group.title === "Managers" ? "manager-card" : ""}
+    ${group.title === "Coordinators" ? "coordinator-card" : ""}
+  `}
                     onClick={() => handleFlip(c._id)}
                   >
                     <div className="flip-card-inner">
@@ -87,7 +90,8 @@ export default function Coordinators() {
                           <h4>{c.name}</h4>
                           <p>{c.designation}</p>
                           <div className="decor-line"></div>
-                          <span className="hint">(tap)</span>
+
+                          {isMobile && <span className="hint">(tap)</span>}
                         </div>
                       </div>
 
