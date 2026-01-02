@@ -68,11 +68,7 @@
    SPECIAL DESIGNATIONS
 ============================= */
 
-/* OC card → golden border + glow */
-.oc-card .flip-card-inner {
-  border: 2px solid gold;
-  box-shadow: 0 0 20px gold;
-}
+
 
 /* Heads → different gradient */
 .head-card .flip-card-front {
