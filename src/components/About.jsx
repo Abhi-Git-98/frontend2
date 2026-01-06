@@ -388,7 +388,7 @@ export default function AboutPage() {
           marginBottom: "4%",
         }}
       >
-        <h3 className="text-center mb-3">Our Past Sponsers</h3>
+        <h3 className="text-center mb-3">Our Sponsors</h3>
         <div
           style={{
             display: "flex",
