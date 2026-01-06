@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Form() {
   return (
+    <h2>If Google form is not visible, 👇go to this</h2>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc6VAXb7Fz3GCzU-cL9NRCldbNfQ3-_EWGBGUnGVJkbcRloRQ/closedform?embedded=true"><h2>link</h2></a>
     <iframe
       title="Google Form"
       src="https://docs.google.com/forms/d/e/1FAIpQLSc6VAXb7Fz3GCzU-cL9NRCldbNfQ3-_EWGBGUnGVJkbcRloRQ/closedform?embedded=true"
