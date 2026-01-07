@@ -329,13 +329,42 @@ export default function AboutPage() {
           </div>
         )}
 
+        {/* ================= COMMUNITY JOIN SECTION ================= */}
+        <div className="event-community-section mt-5">
+          <p className="event-community-text">
+            Please join the community for more updates regarding the GenVision
+            events.
+          </p>
+
+          <p className="event-community-note">
+            <strong>Note:</strong> Before joining the group make sure to enroll
+            and register yourselves for the events.
+          </p>
+
+          <a
+            href="https://chat.whatsapp.com/EKGdRB2F6DkBQCf8qtC7hE"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="event-community-btn"
+          >
+            🚀 Join WhatsApp Community
+          </a>
+        </div>
+
         {/* ================= CONTACT SECTION ================= */}
         <div className="event-contact-container mt-5">
           <h2 className="event-contact-title">Event Related Queries?</h2>
           <p className="event-contact-sub">Don’t Overthink.</p>
-          <p className="event-contact-sub">Join the Community for more updates👇</p>
-          <a href="https://chat.whatsapp.com/EKGdRB2F6DkBQCf8qtC7hE">Whatsapp link</a>
-          <p className="event-contact-sub">Note: Before joining the group make sure to enroll and register yourselves for the events.</p>
+          <p className="event-contact-sub">
+            Join the Community for more updates👇
+          </p>
+          <a href="https://chat.whatsapp.com/EKGdRB2F6DkBQCf8qtC7hE">
+            Whatsapp link
+          </a>
+          <p className="event-contact-sub">
+            Note: Before joining the group make sure to enroll and register
+            yourselves for the events.
+          </p>
 
           <div className="event-contact-cards">
             <div className="event-contact-card">
