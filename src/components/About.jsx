@@ -332,8 +332,7 @@ export default function AboutPage() {
         {/* ================= COMMUNITY JOIN SECTION ================= */}
         <div className="event-community-section mt-5">
           <p className="event-community-text">
-            Please join the community for more updates regarding the GenVision
-            events.
+            Please join the community for the GenVision events.
           </p>
 
           <p className="event-community-note">
@@ -355,7 +354,7 @@ export default function AboutPage() {
         <div className="event-contact-container mt-5">
           <h2 className="event-contact-title">Event Related Queries?</h2>
           <p className="event-contact-sub">Don’t Overthink.</p>
-          <p className="event-contact-sub">
+          {/* <p className="event-contact-sub">
             Join the Community for more updates👇
           </p>
           <a href="https://chat.whatsapp.com/EKGdRB2F6DkBQCf8qtC7hE">
@@ -364,7 +363,7 @@ export default function AboutPage() {
           <p className="event-contact-sub">
             Note: Before joining the group make sure to enroll and register
             yourselves for the events.
-          </p>
+          </p> */}
 
           <div className="event-contact-cards">
             <div className="event-contact-card">

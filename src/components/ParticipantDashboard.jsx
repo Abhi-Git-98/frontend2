@@ -70,12 +70,12 @@ export default function Dashboard() {
           <p>
             <b>Group:</b> {data.groupKeyword || "Individual"}
           </p>
-          <p>
+          {/* <p>
             <b>Payment Status:</b>{" "}
             {data.paymentStatus === "confirmed"
               ? "Your Payment is Confirmed"
               : "Your Payment is Confirmed"}
-          </p>
+          </p> */}
           <p>
             <b>Accommodation Status:</b>{" "}
             {data.accommodationStatus === "confirmed"

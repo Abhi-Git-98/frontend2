@@ -73,8 +73,7 @@ export default function Events() {
       {/* ================= COMMUNITY JOIN SECTION ================= */}
       <div className="event-community-section mt-5">
         <p className="event-community-text">
-          Please join the community for more updates regarding the GenVision
-          events.
+          Please join the community for more the Genvision events.
         </p>
 
         <p className="event-community-note">
