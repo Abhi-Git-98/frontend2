@@ -36,7 +36,7 @@ export default function Coordinators() {
     {
       title: "Organizing Committee",
       designations: ["OC"],
-      col: "col-6 col-md-4 col-lg-4", // 3 per row
+      col: "col-6 col-md-3 col-lg-3", // 3 per row
     },
     {
       title: "Heads",
@@ -84,19 +84,8 @@ export default function Coordinators() {
                     onClick={() => handleFlip(c._id)}
                   >
                     <div className="flip-card-inner">
-                      {/* FRONT */}
+                      {/* FRONT – PHOTO */}
                       <div className="flip-card-front">
-                        <div className="back-overlay text-center">
-                          <h4>{c.name}</h4>
-                          <p>{c.designation}</p>
-                          <div className="decor-line"></div>
-
-                          {isMobile && <span className="hint">(tap)</span>}
-                        </div>
-                      </div>
-
-                      {/* BACK */}
-                      <div className="flip-card-back">
                         {c.image && (
                           <img
                             src={
@@ -108,6 +97,27 @@ export default function Coordinators() {
                                   )}/${c.image.replace(/^\/+/, "")}`
                             }
                             alt={c.name}
+                            className="front-image"
+                          />
+                        )}
+
+                        {isMobile && <span className="hint">(tap)</span>}
+                      </div>
+
+                      {/* BACK – NAME + DESIGNATION */}
+                      <div className="flip-card-back">
+                        {c.image2 && (
+                          <img
+                            src={
+                              c.image2.startsWith("http")
+                                ? c.image2
+                                : `${BASE.replace(
+                                    "/api",
+                                    ""
+                                  )}/${c.image2.replace(/^\/+/, "")}`
+                            }
+                            alt={`${c.name} back`}
+                            className="back-image"
                           />
                         )}
                       </div>

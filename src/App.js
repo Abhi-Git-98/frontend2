@@ -19,6 +19,7 @@ import ScrollDownArrow from "./components/ScrollDownArrow";
 
 // ⚙️ Admin components
 import AdminLogin from "./components/AdminLogin";
+import leader from "./components/Leaderboard";
 import AdminRegister from "./components/AdminRegister";
 import Dashboard from "./components/Dashboard";
 
@@ -37,6 +38,7 @@ export default function App() {
           <News />
           <ScrollDownArrow />
           <Routes>
+            <Route path="/leaderboard" element={<leader />} />
             <Route path="/admin-register" element={<AdminRegister />} />
             <Route path="/" element={<About />} />
             <Route path="/Events" element={<Events />} />

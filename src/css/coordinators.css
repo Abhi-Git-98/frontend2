@@ -11,9 +11,12 @@
   width: 100%;
   height: 100%;
   position: relative;
-  transition: transform 0.8s ease;
+  transition: transform 0.8s ease, box-shadow 0.3s ease;
   transform-style: preserve-3d;
   border-radius: 22px;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.35),
+    inset 0 0 0 1.5px rgba(255,255,255,0.15);
 }
 
 .flip-card.flipped .flip-card-inner {
@@ -30,74 +33,85 @@
   backface-visibility: hidden;
   border-radius: 22px;
   overflow: hidden;
-  padding:0;
 }
 
 /* =============================
-   FRONT SIDE (TEXT)
+   FRONT SIDE (PHOTO)
 ============================= */
 .flip-card-front {
+  background: #000;
+}
+
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  filter: contrast(1.08) saturate(1.1);
+}
+
+/* tap hint */
+.hint {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 0.75rem;
+  color: #ccc;
+  opacity: 0.8;
+}
+
+/* =============================
+   BACK SIDE (TEXT)
+============================= */
+.flip-card-back {
+  transform: rotateY(180deg);
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(
+    135deg,
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0.6)
+  );
 }
 
-/* default gradient */
-.flip-card-front {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+.back-overlay {
+  text-align: center;
+  padding: 20px;
 }
 
 .back-overlay h4 {
   color: #fff;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1.15rem;
   margin-bottom: 6px;
+  letter-spacing: 0.4px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
 
 .back-overlay p {
   color: #d0d0d0;
   font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
-
-.hint {
-  font-size: 0.75rem;
-  color: #aaa;
-}
-
-/* =============================
-   SPECIAL DESIGNATIONS
-============================= */
-
-
-
-/* Heads → different gradient */
-.head-card .flip-card-front {
-  background: linear-gradient(135deg, #4b79a1, #283e51);
+.decor-line {
+  width: 45px;
+  height: 3px;
+  margin: 10px auto 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00ffd5, #00bfa5);
 }
 
 /* =============================
-   BACK SIDE (IMAGE FIX)
-============================= */
-.flip-card-back {
-  background: #000;
-  transform: rotateY(180deg);
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 223, 0, 0.5));
-}
-
-.flip-card-back img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-
-/* =============================
-   HOVER EFFECT (desktop only)
+   HOVER EFFECT (DESKTOP)
 ============================= */
 @media (hover: hover) and (pointer: fine) {
   .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.45);
+    transform: rotateY(180deg) translateY(-6px) scale(1.02);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.45);
   }
 }
 
@@ -111,108 +125,60 @@
 }
 
 /* =============================
-   RESPONSIVE
+   DESIGNATION STYLES (THICK)
 ============================= */
-@media (max-width: 768px) {
-  .flip-card {
-    height: 300px;
-  }
+.oc-card .flip-card-inner {
+  box-shadow:
+    0 18px 40px rgba(255,215,0,0.35),
+    inset 0 0 0 2px rgba(255,215,0,0.45);
 }
 
-@media (max-width: 480px) {
-  .flip-card {
-    height: 260px;
-  }
+.head-card .flip-card-inner {
+  box-shadow:
+    0 16px 35px rgba(75,121,161,0.35),
+    inset 0 0 0 1.5px rgba(255,255,255,0.25);
 }
 
-
-.oc-card .flip-card-front {
-  background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,223,0,0.5));
+.manager-card .flip-card-inner {
+  box-shadow:
+    0 14px 32px rgba(123,104,238,0.35),
+    inset 0 0 0 1.5px rgba(255,255,255,0.2);
 }
 
-.head-card .flip-card-front {
-  background: linear-gradient(135deg, rgba(75,121,161,0.5), rgba(40,62,81,0.7));
-}
-
-.manager-card .flip-card-front {
-  background: linear-gradient(135deg, rgba(123,104,238,0.5), rgba(72,61,139,0.7));
-}
-
-.coordinator-card .flip-card-front {
-  background: linear-gradient(135deg, rgba(0,191,165,0.5), rgba(0,128,128,0.6));
+.coordinator-card .flip-card-inner {
+  box-shadow:
+    0 14px 30px rgba(0,191,165,0.35),
+    inset 0 0 0 1.5px rgba(255,255,255,0.2);
 }
 
 /* =============================
-   MOBILE FIRST IMPROVEMENTS
+   IMAGE ZOOM ON FLIP
 ============================= */
-
-/* smoother text on small screens */
-.back-overlay h4 {
-  font-size: 1.05rem;
-}
-
-.back-overlay p {
-  font-size: 0.85rem;
-}
-
-/* image subtle zoom */
-.flip-card-back img {
+.flip-card-front img {
   transition: transform 0.4s ease;
 }
 
-.flip-card.flipped .flip-card-back img {
+.flip-card.flipped .flip-card-front img {
   transform: scale(1.05);
 }
 
 /* =============================
-   MOBILE VIEW
+   RESPONSIVE
 ============================= */
 @media (max-width: 768px) {
   .flip-card {
-    height: 280px; /* 👈 important */
+    height: 280px;
   }
 
-  .decor-line {
-    width: 40px;
+  .back-overlay h4 {
+    font-size: 1.05rem;
   }
 
-  /* soften gradients on mobile */
-  .oc-card .flip-card-front {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 215, 0, 0.25),
-      rgba(255, 223, 0, 0.35)
-    );
-  }
-
-  .head-card .flip-card-front {
-    background: linear-gradient(
-      135deg,
-      rgba(75, 121, 161, 0.4),
-      rgba(40, 62, 81, 0.55)
-    );
-  }
-
-  .manager-card .flip-card-front {
-    background: linear-gradient(
-      135deg,
-      rgba(123, 104, 238, 0.4),
-      rgba(72, 61, 139, 0.55)
-    );
-  }
-
-  .coordinator-card .flip-card-front {
-    background: linear-gradient(
-      135deg,
-      rgba(0, 191, 165, 0.4),
-      rgba(0, 128, 128, 0.55)
-    );
+  .back-overlay p {
+    font-size: 0.85rem;
   }
 }
 
-/* =============================
-   SMALL MOBILE (very important)
-============================= */
 @media (max-width: 480px) {
   .flip-card {
     height: 250px;
@@ -226,4 +192,23 @@
     font-size: 0.8rem;
   }
 }
+.back-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
+.flip-card-back {
+  position: relative;
+}
+
+.back-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
