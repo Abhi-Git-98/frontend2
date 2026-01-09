@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/navbar.css";
+import genvschedule from "./schedule_genvision_2026.pdf";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -113,7 +114,7 @@ export default function Navbar() {
                 >
                   Join Us
                 </Link>
-                <a href="schedule_genvision_2026.pdf" download
+                <a href= {genvschedule} download
                 className="nav-link text-black register-btn">
                   Schedule
                 </a>
