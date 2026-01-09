@@ -64,9 +64,9 @@ export default function Dashboard() {
           <p>
             <b>Email:</b> {data.email}
           </p>
-          <p>
+          {/* <p>
             <b>Genvision Id:</b> {data.registration_id}
-          </p>
+          </p> */}
           <p>
             <b>Group:</b> {data.groupKeyword || "Individual"}
           </p>
