@@ -68,7 +68,7 @@ export default function NewsTicker() {
               ] 🔴 Registrations are open 🔴 Accomodation for outstation
               students are full 🔴 After payment verification login link and
               credentials will be shared on your registered email. 🔴 <b>Register for Events using your email id only.</b>{" "}
-              🔴 Details for Accomodation [<a href = "hostelaccomo">Click Here</a>] 🔴
+              🔴 Details for Accomodation [<a href = {hostelaccomo} download>Click Here</a>] 🔴
             </span>
           </div>
         </div>
