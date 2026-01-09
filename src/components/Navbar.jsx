@@ -113,6 +113,10 @@ export default function Navbar() {
                 >
                   Join Us
                 </Link>
+                <a href="schedule_genvision_2026.pdf" download
+                className="nav-link text-black register-btn">
+                  Schedule
+                </a>
               </li>
               <li className="nav-item ms-lg-3">
                 <Link className="login-btn" to="/login">
