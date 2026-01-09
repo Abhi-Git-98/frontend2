@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../css/news.css";
 import biofusabsreg from "./BIOFUSION_POSTER_PRESENTATION_COMPETITION.pdf";
-import hostelaccomo from "./Hostel_Accomodation_Genvision_2025-26";
+import hostelaccomo from "./Hostel_Accomodation_Genvision_2025-26.pdf";
 
 export default function NewsTicker() {
   const [show, setShow] = useState(false);
