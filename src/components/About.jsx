@@ -15,6 +15,8 @@ export default function AboutPage() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  const logosPerRow = 6; // lg screen साठी
+
   const baseURL = "https://genvision-26.onrender.com"; // Server base URL
 
   const LazyImage = ({ src, alt, className, style }) => {
@@ -420,6 +422,7 @@ export default function AboutPage() {
         }}
       >
         <h3 className="text-center mb-3">Our Sponsors</h3>
+
         <div
           style={{
             display: "flex",
@@ -429,25 +432,34 @@ export default function AboutPage() {
             alignItems: "center",
           }}
         >
-          {about.sponsors.map((s, idx) => (
-            <div
-              key={idx}
-              className="col-6 col-md-4 col-lg-3"
-              style={{ flex: "0 0 140px", textAlign: "center" }}
-            >
-              <LazyImage
-                src={s.logo}
-                alt={s.name}
+          {about.sponsors.map((s, idx) => {
+            const isSecondRow = idx >= logosPerRow && idx < logosPerRow * 2;
+
+            return (
+              <div
+                key={idx}
+                className="col-6 col-md-4 col-lg-3"
                 style={{
+                  flex: "0 0 140px",
+                  textAlign: "center",
+                  overflow: "hidden",
                   borderRadius: "8px",
-                  objectFit: "contain",
                   backgroundColor: "#fff",
-                  width: "140px",
-                  height: "80px",
                 }}
-              />
-            </div>
-          ))}
+              >
+                <LazyImage
+                  src={s.logo}
+                  alt={s.name}
+                  style={{
+                    width: "140px",
+                    height: "80px",
+                    objectFit: "contain",
+                    transform: isSecondRow ? "scale(1.15)" : "scale(1)",
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
