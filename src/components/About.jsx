@@ -454,7 +454,7 @@ export default function AboutPage() {
                     width: "140px",
                     height: "80px",
                     objectFit: "contain",
-                    transform: isSecondRow ? "scale(1.15)" : "scale(1)",
+                    
                   }}
                 />
               </div>
