@@ -65,10 +65,14 @@ export default function NewsTicker() {
               <a href={biofusabsreg} download>
                 Details
               </a>
-              ] 🔴 Registrations are open 🔴 Accomodation for outstation
+              ] 
+              
+              {/* 🔴 Registrations are open 🔴 Accomodation for outstation
               students are full 🔴 After payment verification login link and
               credentials will be shared on your registered email. 🔴 <b>Register for Events using your email id only.</b>{" "}
-              🔴 Details about Hostel accomodation [<a href = {hostelaccomo} download>Click here</a>] 🔴
+              🔴 Details about Hostel accomodation [<a href = {hostelaccomo} download>Click here</a>] 🔴 */}
+              Genvision 2026 Successfully Concluded!!
+              
             </span>
           </div>
         </div>
