@@ -11,7 +11,7 @@ import Form from "./components/GoogleForm";
 import Coordinators from "./components/Coordinators";
 import Footer from "./components/Footer";
 import About from "./components/About";
-// import Login from "./components/Login";
+import Login from "./components/Login";
 import ParticipantDashboard from "./components/ParticipantDashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import News from "./components/News";
@@ -50,13 +50,13 @@ export default function App() {
               path="/admin"
               element={<AdminLogin onLogin={setIsAdminLoggedIn} />}
             />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <ParticipantDashboard />
-                </PrivateRoute>
+            // <Route path="/login" element={<Login />} />
+            // <Route
+            //   path="/dashboard"
+            //   element={
+            //     <PrivateRoute>
+            //       <ParticipantDashboard />
+            //     </PrivateRoute>
               }
             />
             <Route path="*" element={<Login />} />{" "}
