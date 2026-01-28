@@ -50,15 +50,16 @@ export default function App() {
               path="/admin"
               element={<AdminLogin onLogin={setIsAdminLoggedIn} />}
             />
-            // <Route path="/login" element={<Login />} />
-            // <Route
-            //   path="/dashboard"
-            //   element={
-            //     <PrivateRoute>
-            //       <ParticipantDashboard />
-            //     </PrivateRoute>
+{/* <Route path="/login" element={<Login />} />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <ParticipantDashboard />
+                </PrivateRoute>
               }
             />
+            */}
             <Route path="*" element={<Login />} />{" "}
             {/* unknown path redirect to login */}
           </Routes>
