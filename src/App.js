@@ -59,9 +59,9 @@ export default function App() {
                 </PrivateRoute>
               }
             />
-            */}
             <Route path="*" element={<Login />} />{" "}
             {/* unknown path redirect to login */}
+*/}
           </Routes>
           <Footer />
         </>
