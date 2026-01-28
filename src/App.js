@@ -50,7 +50,8 @@ export default function App() {
               path="/admin"
               element={<AdminLogin onLogin={setIsAdminLoggedIn} />}
             />
-{/* <Route path="/login" element={<Login />} />
+{/* 
+            <Route path="/login" element={<Login />} />
             <Route
               path="/dashboard"
               element={
