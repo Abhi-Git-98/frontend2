@@ -11,7 +11,7 @@ import Form from "./components/GoogleForm";
 import Coordinators from "./components/Coordinators";
 import Footer from "./components/Footer";
 import About from "./components/About";
-import Login from "./components/Login";
+// import Login from "./components/Login";
 import ParticipantDashboard from "./components/ParticipantDashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import News from "./components/News";
